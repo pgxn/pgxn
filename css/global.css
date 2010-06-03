@@ -1,0 +1,241 @@
+/*-----------------------------------------------------------------------------
+
+Template: ubiquitous
+
+Design by: www.LetsEat.at -- Free Websites for Restaurants and Cafés!
+
+This template is made available to the public under Creative Commmons Attribution 3.0 Unported:
+
+http://creativecommons.org/licenses/by/3.0/
+
+Please leave the link back to our site intact at the bottom of your site.
+
+Feel free to redistribute the template as long as you leave the link intact.
+
+Thanks!
+
+
+-----------------------------------------------------------------------------*/
+
+* {
+  padding:0;
+  margin:0;
+  list-style:none;
+}
+
+html {
+  background:#DDD url(../images/bg.png) repeat-x;
+}
+
+body {
+  background:#FFF;
+  width:720px;
+  margin:20px auto;
+  padding:20px;
+  font: 90% "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+}
+
+p {
+  line-height:1.5;
+  color:#333;
+}
+
+h1, h2, h3, h4, h5 {
+  font:3em "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  display:inline;
+  margin-right:15px;
+}
+
+h1 a {
+  color:#333;
+  text-decoration:none;
+}
+
+div#masthead {
+  margin-bottom:20px;
+}
+
+div#masthead ul {
+  display:inline;
+}
+
+div#masthead li {
+  display:inline;
+  margin-right:15px;
+  font-size:1.2em;
+}
+
+div#masthead li a {
+  color:#8e2800;
+  text-decoration:none;
+}
+
+div#masthead li a:hover {
+  text-decoration:underline;
+}
+
+div#main {
+  width:520px;
+  padding-bottom:10px;
+  float:right;
+}
+
+div.article {
+  margin-bottom:30px;
+}
+
+div#main a {
+  color:#ffb03b;
+  color:#b64926;
+  text-decoration:none;
+}
+
+div#main h2 {
+  margin:15px 0 5px;
+}
+
+div#main h2 a {
+  color:#333;
+  text-decoration:none;
+}
+
+div#main p {
+  margin-bottom:10px;
+}
+
+div#main blockquote p {
+  font-style:italic;
+  background:#EEE;
+  padding:10px 15px;
+}
+
+div#main span.date {
+  color:#666;
+  font:0.35em "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+  font-weight:bold;
+}
+
+div#main p.subheader {
+  color:#b64926;
+  font:1.4em "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+  font-weight:bold;
+  margin:5px 0 10px;
+}
+
+div#main ul {
+  margin-bottom: 10px;
+}
+
+div#main li {
+  color:#333;
+  list-style:disc;
+  margin:5px 0 5px 20px;
+}
+
+div#main ul.todos {
+  text-indent: -1.3em;
+}
+
+div#main ul.todos,
+div#main ul.todos li {
+  list-style: none;
+}
+
+div#main li.todo:before {
+    content: "\2610 \0020";
+}
+
+div#main li.done:before {
+    font-size: 110%;
+    color: #469866;
+    content: "\2714 \0020";
+}
+
+div#secondary {
+  margin-right:20px;
+  padding:15px 0 30px;
+  width:180px;
+  background:url(../images/dots.png) repeat-x;
+  float:left;
+}
+
+div#secondary blockquote {
+  background:url(../images/secondary.png);
+  font-size:80%;
+  padding:10px;
+  margin-bottom:20px;
+}
+
+div#secondary blockquote p {
+  background:#FFF;
+  padding:10px;
+}
+
+div#secondary h2 {
+  font-size:1.4em;
+  font-weight:bold;
+  color:#333;
+}
+
+div#secondary .center {
+  margin: 0px auto;
+  text-align:center;
+}
+
+ul#posts h3 {
+  font:1.2em "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+  margin:15px 0 5px;
+}
+
+ul#posts li p {
+  font-style:italic;
+}
+
+ul#posts li p a {
+  color:#333;
+  text-decoration:none;
+}
+
+ul#posts li p a:hover {
+  text-decoration:underline;
+}
+
+ul#footer {
+  font-size: 62.5%;
+  clear:both;
+  background:#666;
+  padding:5px 10px;
+  font-weight:bold;
+  position:relative;
+}
+
+ul#footer li {
+  float:right;
+  color:#FFF;
+  margin-left:10px;
+}
+
+ul#footer li a {
+  color:#FFF;
+  text-decoration:none;
+}
+
+ul#footer li span {
+  text-indent:-9999em;
+  position:absolute;
+}
+
+.clearfix:after {
+  content:".";
+  display:block;
+  height:0;
+  clear:both;
+  visibility:hidden;
+}
+.clearfix {display:inline-block;}
+/* Hide from IE Mac \*/
+  .clearfix {display:block;}
+/* End hide from IE Mac */
