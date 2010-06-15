@@ -28,124 +28,123 @@
 
           <h2>PGXN Project Status</h2>
 
-<p>Track the progess of PGXN development! This is the PGXN project plan. We'll keep it up-to-date as develpoment progresses, and as tasks evolve and change.</p>
+          <p>Track the progess of PGXN development! This is the PGXN project plan. We'll keep it up-to-date as develpoment progresses, and as tasks evolve and change.</p>
 
-<p class="subheader">I. Master Mirror</p>
+          <p class="subheader">I. Master Mirror</p>
 
-<ul class="todos">
-<li class="todo">Set up server</li>
-<li class="todo">Set up <code>rsync</code>-able distributable directory</li>
-</ul>
+          <ul class="todos">
+            <li class="todo">Set up server</li>
+            <li class="todo">Set up <code>rsync</code>-able distributable directory</li>
+          </ul>
 
-<p>The goal of this phase is to simply get the master mirror working and mirrors replicating from it. The structure of what&rsquo;s to be mirrored will not yet have been worked out, but this will be the time to integrate with the PostgreSQL mirror system as well.</p>
+          <p>The goal of this phase is to simply get the master mirror working and mirrors replicating from it. The structure of what&rsquo;s to be mirrored will not yet have been worked out, but this will be the time to integrate with the PostgreSQL mirror system as well.</p>
 
-<p class="subheader">II. Distribution</p>
+          <p class="subheader">II. Distribution</p>
 
-<ul class="todos">
-<li class="todo">Design directory structure</li>
-<li class="todo">Set up distribution to master mirror</li>
-<li class="todo">Set up mirror indexing</li>
-<li class="todo">Set up cron job to validate mirrors</li>
-</ul>
-
-
-<p>This phase will see the design of the directory structure, including how things will be related (via symlinks perhaps?). It will be the job of the software created in this phase to deliver files to the master mirror server and to check the health of existing mirrors.</p>
-
-<p class="subheader">III. Extension Database</p>
-
-<ul class="todos">
-<li class="todo">Design database schema</li>
-<li class="todo">Design database API</li>
-<li class="todo">Automate database/index dump</li>
-</ul>
-
-<p>The root index for PGXN will be a PostgreSQL database. It will be dumped to a file regularly and included in the mirrors. This will allow clients to be able to build a database with the complete metadata contents. Other metadata formats (JSON, CSV) may also be generated.</p>
-
-<p>The database will also include an API for PAUS to use to make changes to the index. This API will not be included in the dump, but included in a private schema.</p>
-
-<p class="subheader">IV. Upload Server</p>
-
-<ul class="todos">
-<li class="todo">Design UI</li>
-<li class="todo">Implement Upload Webapp
-<ul class="todos">
-<li class="todo">Implement authentication (use postgresql.org accounts?)</li>
-<li class="todo">Implement distribution cleansing into <code>.pgz</code> (zip) package</li>
-<li class="todo">Report invalid upload to author via email</li>
-<li class="todo">Drop <code>.pgz</code> into proper directory</li>
-<li class="todo">Update database records</li>
-<li class="todo">Allow permissions editing</li>
-<li class="todo">Provide a comprehensive Web API
-</li>
-</ul>
-</li>
-<li class="todo">Deploy to upload.pgxn.org</li>
-<li class="todo">Test, test, test, test</li>
-</ul>
-
-<p>Completion of this phase will make PGXN a real option for PostgreSQL extension distribution. When this phase is completed, registered users will be able to login to the upload server, upload a distribution tarball, and allow other users to be listed as co-release managers. Uploaded files will be indexed by the upload server, inserting the proper values into the extension database, and then delivered to the root directory for distribution to the master mirror server.</p>
-
-<p>The upload server will also provide a complete Web API to allow third-party applications to interrogate the metadata database, as well as authenticate a user and release a tarball. The command-line client developed in phase VI will be the first utility to use this API.</p>
-
-<p class="subheader">V. Search Site</p>
-
-<ul class="todos">
-<li class="todo">Set up cron job to sync from the master server and build the index database</li>
-<li class="todo">Design UI</li>
-<li class="todo">Implement Webapp</li>
-<li class="todo">Features:
-
-<ul class="todos">
-<li class="todo">Full text search of all extensions</li>
-<li class="todo">Pages for each extension upload</li>
-<li class="todo">Pages for each documentation file included in the tarball</li>
-<li class="todo">Pages for each extension release manager</li>
-</ul>
-</li>
-<li class="todo">Write Unit/Integration/Acceptance tests</li>
-<li class="todo">Set up deployment strategy</li>
-<li class="todo">Launch</li>
-</ul>
+          <ul class="todos">
+            <li class="todo">Design directory structure</li>
+            <li class="todo">Set up distribution to master mirror</li>
+            <li class="todo">Set up mirror indexing</li>
+            <li class="todo">Set up cron job to validate mirrors</li>
+          </ul>
 
 
-<p>Modeled on The <a href="http://search.cpan.org/">CPAN Search</a> site, the search site will be the primary online presence for PGXN. If one needs a PostgreSQL extension, it should be the first stop in the search for existing extensions. Furthermore, each extension will have an intuitive, descriptive URL, as will every page of extension documentation, for each version of an extension. This will make it easy to create links to various documentation pages from other sites, thus boosting Google search rankings for extensions.</p>
+          <p>This phase will see the design of the directory structure, including how things will be related (via symlinks perhaps?). It will be the job of the software created in this phase to deliver files to the master mirror server and to check the health of existing mirrors.</p>
 
-<p>Once this phase is completed, it will be time to publicly launch the PGXN service, as any changes required of the infrastructure from the previous phases will be hammered out and finalized. This is because the search site will effectively be a client of PGXN, and as the first client, will likely require changes from the PGXN&rsquo;s API and database structure. But once search is done, the PGXN API and database can be blessed as 1.0 and the whole project launched as 1.0.</p>
+          <p class="subheader">III. Extension Database</p>
 
-<p class="subheader">VI. Command-Line Client</p>
+          <ul class="todos">
+            <li class="todo">Design database schema</li>
+            <li class="todo">Design database API</li>
+            <li class="todo">Automate database/index dump</li>
+          </ul>
 
-<ul class="todos">
-<li class="todo">Design the interface
+          <p>The root index for PGXN will be a PostgreSQL database. It will be dumped to a file regularly and included in the mirrors. This will allow clients to be able to build a database with the complete metadata contents. Other metadata formats (JSON, CSV) may also be generated.</p>
 
-<ul class="todos">
-<li class="todo">Supported commands</li>
-<li class="todo">Command-line options</li>
-</ul>
-</li>
-<li class="todo">Implement the client
+          <p>The database will also include an API for PAUS to use to make changes to the index. This API will not be included in the dump, but included in a private schema.</p>
 
-<ul class="todos">
-<li class="todo">Set up configuration options and storage</li>
-<li class="todo">Allow metadata interrogation to be pluggable
+          <p class="subheader">IV. Upload Server</p>
 
-<ul class="todos">
-<li class="todo">Go with Web API to start</li>
-<li class="todo">Maybe Download PostgreSQL dump file for local index database</li>
-</ul>
-</li>
-<li class="todo">Use <a href="http://www.postgresql.org/docs/current/static/xfunc-c.html#XFUNC-C-PGXS">PGXS</a> to build downloaded extensions
+          <ul class="todos">
+            <li class="todo">Design UI</li>
+            <li class="todo">Implement Upload Webapp
+              <ul class="todos">
+                <li class="todo">Implement authentication (use postgresql.org accounts?)</li>
+                <li class="todo">Implement distribution cleansing into <code>.pgz</code> (zip) package</li>
+                <li class="todo">Report invalid upload to author via email</li>
+                <li class="todo">Drop <code>.pgz</code> into proper directory</li>
+                <li class="todo">Update database records</li>
+                <li class="todo">Allow permissions editing</li>
+                <li class="todo">Provide a comprehensive Web API
+                </li>
+              </ul>
+            </li>
+            <li class="todo">Deploy to upload.pgxn.org</li>
+            <li class="todo">Test, test, test, test</li>
+          </ul>
 
-<ul class="todos">
-<li class="todo">Initially, that means <code>make &amp;&amp; make install &amp;&amp; make installcheck</code></li>
-<li class="todo">Allow flexibility to support other build systems <a href="http://wiki.postgresql.org/wiki/ExtensionPackaging">in the future</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+          <p>Completion of this phase will make PGXN a real option for PostgreSQL extension distribution. When this phase is completed, registered users will be able to login to the upload server, upload a distribution tarball, and allow other users to be listed as co-release managers. Uploaded files will be indexed by the upload server, inserting the proper values into the extension database, and then delivered to the root directory for distribution to the master mirror server.</p>
 
-<p>The final part of the project will be the creation of a command-line client modeled on <a href="http://search.cpan.org/perldoc?App-cpanminus/">cpanminus</a> and <a href="http://search.cpan.org/perldoc?CPAN/">CPAN.pm</a>. It will do its best to be self-configuring, so that the user does not have to do anything to get started with it. But it will be highly configurable, so that users can select mirrors to use, different installed versions of PostgreSQL, etc.</p>
+          <p>The upload server will also provide a complete Web API to allow third-party applications to interrogate the metadata database, as well as authenticate a user and release a tarball. The command-line client developed in phase VI will be the first utility to use this API.</p>
+
+          <p class="subheader">V. Search Site</p>
+
+          <ul class="todos">
+            <li class="todo">Set up cron job to sync from the master server and build the index database</li>
+            <li class="todo">Design UI</li>
+            <li class="todo">Implement Webapp</li>
+            <li class="todo">Features:
+
+              <ul class="todos">
+                <li class="todo">Full text search of all extensions</li>
+                <li class="todo">Pages for each extension upload</li>
+                <li class="todo">Pages for each documentation file included in the tarball</li>
+                <li class="todo">Pages for each extension release manager</li>
+              </ul>
+            </li>
+            <li class="todo">Write Unit/Integration/Acceptance tests</li>
+            <li class="todo">Set up deployment strategy</li>
+            <li class="todo">Launch</li>
+          </ul>
+
+          <p>Modeled on The <a href="http://search.cpan.org/">CPAN Search</a> site, the search site will be the primary online presence for PGXN. If one needs a PostgreSQL extension, it should be the first stop in the search for existing extensions. Furthermore, each extension will have an intuitive, descriptive URL, as will every page of extension documentation, for each version of an extension. This will make it easy to create links to various documentation pages from other sites, thus boosting Google search rankings for extensions.</p>
+
+          <p>Once this phase is completed, it will be time to publicly launch the PGXN service, as any changes required of the infrastructure from the previous phases will be hammered out and finalized. This is because the search site will effectively be a client of PGXN, and as the first client, will likely require changes from the PGXN&rsquo;s API and database structure. But once search is done, the PGXN API and database can be blessed as 1.0 and the whole project launched as 1.0.</p>
+
+          <p class="subheader">VI. Command-Line Client</p>
+
+          <ul class="todos">
+            <li class="todo">Design the interface
+
+              <ul class="todos">
+                <li class="todo">Supported commands</li>
+                <li class="todo">Command-line options</li>
+              </ul>
+            </li>
+            <li class="todo">Implement the client
+
+              <ul class="todos">
+                <li class="todo">Set up configuration options and storage</li>
+                <li class="todo">Allow metadata interrogation to be pluggable
+
+                  <ul class="todos">
+                    <li class="todo">Go with Web API to start</li>
+                    <li class="todo">Maybe Download PostgreSQL dump file for local index database</li>
+                  </ul>
+                </li>
+                <li class="todo">Use <a href="http://www.postgresql.org/docs/current/static/xfunc-c.html#XFUNC-C-PGXS">PGXS</a> to build downloaded extensions
+
+                  <ul class="todos">
+                    <li class="todo">Initially, that means <code>make &amp;&amp; make install &amp;&amp; make installcheck</code></li>
+                    <li class="todo">Allow flexibility to support other build systems <a href="http://wiki.postgresql.org/wiki/ExtensionPackaging">in the future</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <p>The final part of the project will be the creation of a command-line client modeled on <a href="http://search.cpan.org/perldoc?App-cpanminus/">cpanminus</a> and <a href="http://search.cpan.org/perldoc?CPAN/">CPAN.pm</a>. It will do its best to be self-configuring, so that the user does not have to do anything to get started with it. But it will be highly configurable, so that users can select mirrors to use, different installed versions of PostgreSQL, etc.</p>
         </div>
 
       </div>
