@@ -37,7 +37,7 @@
             <li class="todo">Set up <code>rsync</code>-able distributable directory</li>
           </ul>
 
-          <p>The goal of this phase is to simply get the master mirror working and mirrors replicating from it. The structure of what&rsquo;s to be mirrored will not yet have been worked out, but this will be the time to integrate with the PostgreSQL mirror system as well.</p>
+          <p>The goal of this phase is to simply get the master mirror working and mirrors replicating from it. The structure of what&rsquo;s to be mirrored will not yet have been worked out, but this will be the time to integrate with the PostgreSQL mirror system as well. <strong>5% of project.</strong></p>
 
           <p class="subheader">II. Distribution</p>
 
@@ -49,7 +49,7 @@
           </ul>
 
 
-          <p>This phase will see the design of the directory structure, including how things will be related (via symlinks perhaps?). It will be the job of the software created in this phase to deliver files to the master mirror server and to check the health of existing mirrors.</p>
+          <p>This phase will see the design of the directory structure, including how things will be related (via symlinks perhaps?). It will be the job of the software created in this phase to deliver files to the master mirror server and to check the health of existing mirrors. <strong>8% of project.</strong></p>
 
           <p class="subheader">III. Extension Database</p>
 
@@ -61,7 +61,7 @@
 
           <p>The root index for PGXN will be a PostgreSQL database. It will be dumped to a file regularly and included in the mirrors. This will allow clients to be able to build a database with the complete metadata contents. Other metadata formats (JSON, CSV) may also be generated.</p>
 
-          <p>The database will also include an API for PAUS to use to make changes to the index. This API will not be included in the dump, but included in a private schema.</p>
+          <p>The database will also include an API for PAUS to use to make changes to the index. This API will not be included in the dump, but included in a private schema. <strong>12% of project.</strong></p>
 
           <p class="subheader">IV. Upload Server</p>
 
@@ -85,7 +85,7 @@
 
           <p>Completion of this phase will make PGXN a real option for PostgreSQL extension distribution. When this phase is completed, registered users will be able to login to the upload server, upload a distribution tarball, and allow other users to be listed as co-release managers. Uploaded files will be indexed by the upload server, inserting the proper values into the extension database, and then delivered to the root directory for distribution to the master mirror server.</p>
 
-          <p>The upload server will also provide a complete Web API to allow third-party applications to interrogate the metadata database, as well as authenticate a user and release a tarball. The command-line client developed in phase VI will be the first utility to use this API.</p>
+          <p>The upload server will also provide a complete Web API to allow third-party applications to interrogate the metadata database, as well as authenticate a user and release a tarball. The command-line client developed in phase VI will be the first utility to use this API. <strong>15% of project.</strong></p>
 
           <p class="subheader">V. Search Site</p>
 
@@ -109,7 +109,7 @@
 
           <p>Modeled on The <a href="http://search.cpan.org/">CPAN Search</a> site, the search site will be the primary online presence for PGXN. If one needs a PostgreSQL extension, it should be the first stop in the search for existing extensions. Furthermore, each extension will have an intuitive, descriptive URL, as will every page of extension documentation, for each version of an extension. This will make it easy to create links to various documentation pages from other sites, thus boosting Google search rankings for extensions.</p>
 
-          <p>Once this phase is completed, it will be time to publicly launch the PGXN service, as any changes required of the infrastructure from the previous phases will be hammered out and finalized. This is because the search site will effectively be a client of PGXN, and as the first client, will likely require changes from the PGXN&rsquo;s API and database structure. But once search is done, the PGXN API and database can be blessed as 1.0 and the whole project launched as 1.0.</p>
+          <p>Once this phase is completed, it will be time to publicly launch the PGXN service, as any changes required of the infrastructure from the previous phases will be hammered out and finalized. This is because the search site will effectively be a client of PGXN, and as the first client, will likely require changes from the PGXN&rsquo;s API and database structure. But once search is done, the PGXN API and database can be blessed as 1.0 and the whole project launched as 1.0. <strong>30% of project.</strong></p>
 
           <p class="subheader">VI. Command-Line Client</p>
 
@@ -144,7 +144,7 @@
             </li>
           </ul>
 
-          <p>The final part of the project will be the creation of a command-line client modeled on <a href="http://search.cpan.org/perldoc?App-cpanminus/">cpanminus</a> and <a href="http://search.cpan.org/perldoc?CPAN/">CPAN.pm</a>. It will do its best to be self-configuring, so that the user does not have to do anything to get started with it. But it will be highly configurable, so that users can select mirrors to use, different installed versions of PostgreSQL, etc.</p>
+          <p>The final part of the project will be the creation of a command-line client modeled on <a href="http://search.cpan.org/perldoc?App-cpanminus/">cpanminus</a> and <a href="http://search.cpan.org/perldoc?CPAN/">CPAN.pm</a>. It will do its best to be self-configuring, so that the user does not have to do anything to get started with it. But it will be highly configurable, so that users can select mirrors to use, different installed versions of PostgreSQL, etc. <strong>30% of project.</strong></p>
         </div>
 
       </div>
