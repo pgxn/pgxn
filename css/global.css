@@ -154,6 +154,19 @@ div#main li.done:before {
     content: "\2714 \0020";
 }
 
+#main dt:before {
+    content: "\2022 \0020";
+}
+
+#main dt {
+  font-weight:bold;
+  line-height:1.5;
+}
+
+#main dd {
+  margin-left: 1em;
+}
+
 div#secondary {
   margin-right:20px;
   padding:15px 0 30px;
