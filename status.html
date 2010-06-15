@@ -3,10 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="description" content="PGXN: PostgreSQL Distributed Extention Network" />
+    <meta name="description" content="PGXN: PostgreSQL Extension Network" />
     <meta name="keywords" content="PostgreSQL, pgsql, plpgsql, plperl, extension, distribution, archive, zcan, pgxn, pgxnnet, pgan, cpan" />
     <link href="./css/global.css" rel="stylesheet" type="text/css" />
-    <title>PGXN: PostgreSQL Extention Network—Status</title>
+    <title>PGXN: PostgreSQL Extension Network—Status</title>
   </head>
 
   <body>
@@ -28,7 +28,7 @@
 
           <h2>PGXN Project Status</h2>
 
-          <p>Track the progess of PGXN development! This is the PGXN project plan. We'll keep it up-to-date as develpoment progresses, and as tasks evolve and change.</p>
+          <p>Track the progress of PGXN development! This is the PGXN project plan. We'll keep it up-to-date as development progresses, and as tasks evolve and change.</p>
 
           <p class="subheader">I. Master Mirror</p>
 
@@ -61,7 +61,7 @@
 
           <p>The root index for PGXN will be a PostgreSQL database. It will be dumped to a file regularly and included in the mirrors. This will allow clients to be able to build a database with the complete metadata contents. Other metadata formats (JSON, CSV) may also be generated.</p>
 
-          <p>The database will also include an API for PAUS to use to make changes to the index. This API will not be included in the dump, but included in a private schema. <strong>12% of project.</strong></p>
+          <p>The database will also include an API that the upload server will use to udpate the index. This API will not be included in the dump, but included in a private schema. <strong>12% of project.</strong></p>
 
           <p class="subheader">IV. Upload Server</p>
 
