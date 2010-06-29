@@ -33,6 +33,7 @@ body {
   margin:20px auto;
   padding:20px;
   font: 90% "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+  text-rendering: optimizeLegibility;
 }
 
 p {
