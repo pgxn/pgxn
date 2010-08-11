@@ -70,7 +70,7 @@ div#masthead li {
 }
 
 div#masthead li a {
-  color:#8e2800;
+  color:#236691;
   text-decoration:none;
 }
 
@@ -89,8 +89,7 @@ div.article {
 }
 
 div#main a {
-  color:#ffb03b;
-  color:#b64926;
+  color:#236691;
   text-decoration:none;
 }
 
@@ -120,7 +119,7 @@ div#main span.date {
 }
 
 div#main p.subheader {
-  color:#b64926;
+  color:#236691;
   font:1.4em "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
   font-weight:bold;
   margin:5px 0 10px;
