@@ -56,7 +56,7 @@ h1 a {
 }
 
 div#masthead {
-  margin-bottom:20px;
+  margin: 10px 0;
   text-align:right;
 }
 
@@ -120,10 +120,10 @@ div#main span.date {
 }
 
 div#main p.subheader {
-  color:#236691;
+  color:#8e2800;
   font:1.4em "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
   font-weight:bold;
-  margin:5px 0 10px;
+  margin: 20px 0 5px;
 }
 
 div#main ul {
