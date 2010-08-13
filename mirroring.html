@@ -61,7 +61,8 @@ AT 20:00 /every:M,T,W,Th,F,S,Su &quot;C:\Program Files\Rsync\rsync -az <span sty
             server to serve the mirror. If your rsync is already in the
             subdirectory of a web server root, you should be golden.
             Otherwise, if you’re using Apache, you can set up a virtual host
-            like so:</p>
+            like so (assuming that you’re <code>rsync</code>ing to
+            <code>/usr/local/pgxn</code>):</p>
 
 <pre>
 &lt;VirtualHost *:80&gt;
