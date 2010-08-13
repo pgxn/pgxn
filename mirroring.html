@@ -4,9 +4,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="description" content="PGXN: PostgreSQL Extension Network" />
-    <meta name="keywords" content="PostgreSQL, pgsql, plpgsql, plperl, extension, distribution, archive, zcan, pgxn, pgxnnet, pgan, cpan" />
+    <meta name="keywords" content="PostgreSQL, pgsql, plpgsql, plperl, extension, distribution, archive, zcan, pgxn, pgxnnet, pgan, cpan, mirror" />
     <link href="./css/global.css" rel="stylesheet" type="text/css" />
-    <title>PGXN: PostgreSQL Extension Network—Contact</title>
+    <title>PGXN: PostgreSQL Extension Network—Mirroring</title>
   </head>
 
   <body>
@@ -19,8 +19,8 @@
         <li><a href="http://blog.pgxn.org/">Blog</a></li>
         <li><a href="http://twitter.com/pgxn/">Twitter</a></li>
         <li><a href="contributors.html">Contributors</a></li>
-        <li><a href="mirroring.html">Mirroring</a></li>
         <li><a href="faq.html">FAQ</a></li>
+        <li><a href="mirroring.html">Mirroring</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
@@ -29,11 +29,55 @@
       <div id="main">
         <div class="article">
 
-          <h2>Contact Us</h2>
+          <h2>Mirroring PGXN</h2>
 
-          <p>PGXN is being developed by <a href="http://justatheory.com/">David E. Wheeler</a> and the
-            <a href="http://www.pgexperts.com/">PostgreSQL Experts, Inc.</a> team. <a href="mailto:pgxn@pgexperts.com">Drop us a line</a> if you'd like to contribute or help out.</p>
+          <p>Hosting a mirror is simple. All you need is:</p>
 
+          <ul>
+            <li>A reasonably fast internet connection</li>
+            <li>Space for storage—not much at this point</li>
+            <li>An <a href="http://rsync.samba.org/"><code>rsync</code></a> client</li>
+            <li>A web server</p>
+          </ul>
+
+          <p>The <code>rsync</code> address for the PGXN master mirror is
+          rsync://master.pgxn.org/pgxn.</p>
+
+          <p>Once you have the rsync client installed on your system and the
+          disk space mapped out, add an entry to your crontab like so:</p>
+
+          <pre>
+0 20 * * * /usr/bin/rsync -az --delete rsync://master.pgxn.org/pgxn \
+/usr/local/pgxn
+</pre>
+
+          <p>On Windows, use AT like so:</p>
+
+          <pre>
+AT 20:00 /every:M,T,W,Th,F,S,Su &quot;C:\Program Files\Rsync\rsync -az \
+--delete rsync://master.pgxn.org/pgxn C:\Projects\PGXN&quot;
+</pre>
+
+          <p>Please do not sync more than once every hour. And realistically
+            you only need to sync once or twice a day. Next, set up a web
+            server to serve the mirror. If your rsync is already in the
+            subdirectory of a web server root, you should be golden.
+            Otherwise, if you’re using Apache, you can set up a virtual host
+            like so:</p>
+
+<pre>
+&lt;VirtualHost *:80&gt;
+  DocumentRoot /usr/local/pgxn
+  ServerName pgxn.example.org
+  CustomLog /var/log/httpd/access_log combined
+  &lt;Directory /usr/local/pgxn&gt;
+    AllowOverride All
+    Allow from all
+  &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+</pre>
+
+          <p>If you’d like to register your mirror, <a href="mailto:pgxn@pgexperts.com?subject=Mirror Registration&amp;body=hostname:         hostname.of.the.pgxn.mirroring.site%0afrequency:        daily/bidaily/.../weekly%0adst_directory:    the.same.host.name:/pgxn/mirror/directory/%0adst_location:     city, (area?, )country, continent (lon lat)%0adst_organisation: full organisation name%0adst_timezone:     GMT[+-]n%0adst_contact:      email.address.to.contact@for.this.mirror%0adst_src:          from.which.host:/is/this/site/mirroring/from/%0adst_notes:        (optional field) access restrictions, for example?">send us email</a> with all the details and we’ll get you registered.</p>
         </div>
 
       </div>
