@@ -41,6 +41,13 @@ p {
   color:#333;
 }
 
+pre {
+   margin:.5em 0 1em;
+   padding: 10px;
+   background-color: #ccc;
+   border: 1px dashed black;
+}
+
 h1, h2, h3, h4, h5 {
   font:3em "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
