@@ -46,16 +46,14 @@
           <p>Once you have the rsync client installed on your system and the
           disk space mapped out, add an entry to your crontab like so:</p>
 
-          <pre>
-0 20 * * * /usr/bin/rsync -az --delete rsync://master.pgxn.org/pgxn \
-/usr/local/pgxn
+          <pre style="white-space:normal">
+0 20 * * * /usr/bin/rsync -az --delete rsync://master.pgxn.org/pgxn /usr/local/pgxn
 </pre>
 
           <p>On Windows, use AT like so:</p>
 
-          <pre>
-AT 20:00 /every:M,T,W,Th,F,S,Su &quot;C:\Program Files\Rsync\rsync -az \
---delete rsync://master.pgxn.org/pgxn C:\Projects\PGXN&quot;
+          <pre style="white-space:normal">
+AT 20:00 /every:M,T,W,Th,F,S,Su &quot;C:\Program Files\Rsync\rsync -az <span style="white-space:nowrap">--delete</span> rsync://master.pgxn.org/pgxn C:\Projects\PGXN&quot;
 </pre>
 
           <p>Please do not sync more than once every hour. And realistically
