@@ -33,7 +33,7 @@
 
           <p>Track the progress of PGXN development! This is the PGXN project plan. We'll keep it up-to-date as development progresses, and as tasks evolve and change.</p>
 
-          <p class="subheader">I. Master Mirror</p>
+          <p class="subheader" id="mirror">I. Master Mirror</p>
 
           <ul class="todos">
             <li class="done">Set up server</li>
@@ -42,7 +42,7 @@
 
           <p>The goal of this phase is to simply get the master mirror working and mirrors replicating from it. The structure of what&rsquo;s to be mirrored will not yet have been worked out, but this will be the time to integrate with the PostgreSQL mirror system as well. <strong>5% of project.</strong></p>
 
-          <p class="subheader">II. Distribution</p>
+          <p class="subheader" id="distribution">II. Distribution</p>
 
           <ul class="todos">
             <li class="todo">Design directory structure</li>
@@ -54,7 +54,7 @@
 
           <p>This phase will see the design of the directory structure, including how things will be related (via symlinks perhaps?). It will be the job of the software created in this phase to deliver files to the master mirror server and to check the health of existing mirrors. <strong>8% of project.</strong></p>
 
-          <p class="subheader">III. Extension Database</p>
+          <p class="subheader" id="database">III. Extension Database</p>
 
           <ul class="todos">
             <li class="todo">Design database schema</li>
@@ -66,7 +66,7 @@
 
           <p>The database will also include an API that the upload server will use to udpate the index. This API will not be included in the dump, but included in a private schema. <strong>12% of project.</strong></p>
 
-          <p class="subheader">IV. Upload Server</p>
+          <p class="subheader" id="upload">IV. Upload Server</p>
 
           <ul class="todos">
             <li class="todo">Design UI</li>
@@ -90,7 +90,7 @@
 
           <p>The upload server will also provide a complete Web API to allow third-party applications to interrogate the metadata database, as well as authenticate a user and release a tarball. The command-line client developed in phase VI will be the first utility to use this API. <strong>15% of project.</strong></p>
 
-          <p class="subheader">V. Search Site</p>
+          <p class="subheader" id="search">V. Search Site</p>
 
           <ul class="todos">
             <li class="todo">Set up cron job to sync from the master server and build the index database</li>
@@ -114,7 +114,7 @@
 
           <p>Once this phase is completed, it will be time to publicly launch the PGXN service, as any changes required of the infrastructure from the previous phases will be hammered out and finalized. This is because the search site will effectively be a client of PGXN, and as the first client, will likely require changes from the PGXN&rsquo;s API and database structure. But once search is done, the PGXN API and database can be blessed as 1.0 and the whole project launched as 1.0. <strong>30% of project.</strong></p>
 
-          <p class="subheader">VI. Command-Line Client</p>
+          <p class="subheader" id="client">VI. Command-Line Client</p>
 
           <ul class="todos">
             <li class="todo">Design the interface
