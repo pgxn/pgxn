@@ -169,6 +169,8 @@ div#main li.done:before {
 #main dt {
   font-weight:bold;
   line-height:1.5;
+  text-indent: -1em;
+  margin-left: 1em;
 }
 
 #main dd {
