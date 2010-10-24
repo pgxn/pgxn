@@ -46,8 +46,8 @@
 
           <ul class="todos">
             <li class="done">Design directory structure</li>
-            <li class="todo">Set up distribution to master mirror</li>
-            <li class="todo">Set up mirror indexing</li>
+            <li class="done">Set up distribution to master mirror</li>
+            <li class="done">Set up mirror indexing</li>
             <li class="done">Set up cron job to validate mirrors</li>
           </ul>
 
@@ -57,9 +57,9 @@
           <p class="subheader" id="database">III. Extension Database</p>
 
           <ul class="todos">
-            <li class="todo">Design database schema</li>
-            <li class="todo">Design database API</li>
-            <li class="todo">Automate database/index dump</li>
+            <li class="done">Design database schema</li>
+            <li class="done">Design database API</li>
+            <li class="done">Automate database/index dump</li>
           </ul>
 
           <p>The root index for PGXN will be a PostgreSQL database. It will be dumped to a file regularly and included in the mirrors. This will allow clients to be able to build a database with the complete metadata contents. Other metadata formats (JSON, CSV) may also be generated.</p>
@@ -69,20 +69,19 @@
           <p class="subheader" id="upload">IV. Upload Server</p>
 
           <ul class="todos">
-            <li class="todo">Design UI</li>
+            <li class="done">Design UI</li>
             <li class="todo">Implement Upload Webapp
               <ul class="todos">
-                <li class="todo">Implement authentication (use postgresql.org accounts?)</li>
-                <li class="todo">Implement distribution cleansing into <code>.pgz</code> (zip) package</li>
-                <li class="todo">Report invalid upload to author via email</li>
-                <li class="todo">Drop <code>.pgz</code> into proper directory</li>
-                <li class="todo">Update database records</li>
+                <li class="done">Implement authentication (using basic auth)</li>
+                <li class="done">Implement distribution cleansing into <code>.pgz</code> (zip) package</li>
+                <li class="done">Drop <code>.pgz</code> into proper directory</li>
+                <li class="done">Update database records</li>
                 <li class="todo">Allow permissions editing</li>
                 <li class="todo">Provide a comprehensive Web API
                 </li>
               </ul>
             </li>
-            <li class="todo">Deploy to upload.pgxn.org</li>
+            <li class="done">Deploy to <a href="http://manager.pgxn.org/">manager.pgxn.org</a></li>
             <li class="todo">Test, test, test, test</li>
           </ul>
 
