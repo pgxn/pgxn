@@ -77,12 +77,12 @@ Terminology
 
 =extension=
     A reusable library of code contained in a single file or within files
-    referenced by the (forthcoming) [`CREATE
-    EXTENSION`statement](http://wiki.postgresql.org/wiki/ExtensionPackaging).
-    Extensions usually contain one or more PostgreSQL objects -- such as data
-    types, functions, and operators -- and are often referred to by the name
-    of a primary object that can be mapped to the file name. For example, one
-    might refer to `pgTAP` instead of `sql/pgtap.sql`.
+    referenced by the (forthcoming) [`CREATE EXTENSION`
+    statement](http://wiki.postgresql.org/wiki/ExtensionPackaging). Extensions
+    usually contain one or more PostgreSQL objects -- such as data types,
+    functions, and operators -- and are often referred to by the name of a
+    primary object that can be mapped to the file name. For example, one might
+    refer to `pgTAP` instead of `sql/pgtap.sql`.
 
 =consumer=
     Code that reads a metadata file, deserializes it into a data structure in
@@ -99,7 +99,7 @@ Terminology
 Data Types
 ==========
 
-Fields in the [Structure](#structure) section describe data elements, each of
+Fields in the [Structure](#Structure) section describe data elements, each of
 which has an associated data type as described herein. There are four
 primitive types: *Boolean*, *String*, *List*, and *Map*. Other types are
 subtypes of primitives and define compound data structures or define
@@ -127,42 +127,42 @@ Producers **must** represent List elements using a data structure which
 unambiguously indicates that multiple values are possible, such as a
 JavaScript array.
 
-Consumers expecting a List **must** consider a [String](#string) as equivalent
+Consumers expecting a List **must** consider a [String](#String) as equivalent
 to a List of length 1.
 
 Map
 ---
 
 A *Map* is an unordered collection of zero or more data elements ("values"),
-indexed by associated [String](#string) elements ("keys"). The Map's value
+indexed by associated [String](#String) elements ("keys"). The Map's value
 elements may be of mixed types.
 
 License String
 --------------
 
-A *License String* is a subtype of [String](#string) with a restricted set of
+A *License String* is a subtype of [String](#String) with a restricted set of
 values. Valid values are described in detail in the description of the
 [license field](#license).
 
 URI
 ---
 
-*URI* is a subtype of [String](#string) containing a Uniform Resource
+*URI* is a subtype of [String](#String) containing a Uniform Resource
 Identifier or Locator.
 
 Version
 -------
 
-A *Version* is a subtype of [String](#string) containing a value that
+A *Version* is a subtype of [String](#String) containing a value that
 describes the version number of packages or distributions. Restrictions on
-format are described in detail in the [Version Format](#version_format)
+format are described in detail in the [Version Format](#Version.Format)
 section.
 
 Structure
 =========
 
-The metadata structure is a data element of type [Map](#map). This section
-describes valid keys within the [Map](#map).
+The metadata structure is a data element of type [Map](#Map). This section
+describes valid keys within the [Map](#Map).
 
 Any keys not described in this specification document (whether top-level or
 within compound data structures described herein) are considered *custom keys*
@@ -180,7 +180,7 @@ which the definition was modified, whether the key is *required* or
 *optional*, and the data type of the corresponding data element. These items
 are in parentheses, brackets, and braces, respectively.
 
-If a data type is a [Map](#map) or [Map](#map) subtype, valid subkeys will be
+If a data type is a [Map](#Map) or [Map](#Map) subtype, valid subkeys will be
 described as well. All examples are represented as [JSON](http://json.org/).
 
 <!-- Nothing deprecated yet.
@@ -200,7 +200,7 @@ Example:
 
     "abstract": 'Unit testing for PostgreSQL"
 
-(Spec 1) [required] {[String](#string)}
+(Spec 1) [required] {[String](#String)}
 
 This is a short description of the purpose of the distribution.
 
@@ -215,9 +215,9 @@ Examples:
       "Josh Berkus <jberkus@pgxn.org>"
     ]
 
-(Spec 1) [required] {[List](#list) of one or more [Strings](#string)}
+(Spec 1) [required] {[List](#List) of one or more [Strings](#String)}
 
-This [List](#list) indicates the person(s) to contact concerning the
+This [List](#List) indicates the person(s) to contact concerning the
 distribution. The preferred form of the contact string is:
 
     contact-name <email-address>
@@ -250,20 +250,20 @@ Examples:
 
     "license": [ "apache_2", "mozilla_1_0" ]
 
-(Spec 1) [required] {[Map](#map) or [List](#list) of one or more
-[License Strings](#license_string)}
+(Spec 1) [required] {[Map](#Map) or [List](#List) of one or more
+[License Strings](#License.String)}
 
 One or more licenses that apply to some or all of the files in the
 distribution. If multiple licenses are listed, the distribution documentation
 should be consulted to clarify the interpretation of multiple licenses.
 
-The [Map](#map) type describes the license or licenses. Each subkey may be any
-string naming a license. All values must be [URIs](#uri) that link to the
+The [Map](#Map) type describes the license or licenses. Each subkey may be any
+string naming a license. All values must be [URIs](#URI) that link to the
 appropriate license.
 
-The [List](#list) type may be used as a shortcut to identify one or more
-well-known licenses. The following list of [License Strings](#license_string)
-are valid in the [List](#list) representation:
+The [List](#List) type may be used as a shortcut to identify one or more
+well-known licenses. The following list of [License Strings](#License.String)
+are valid in the [List](#List) representation:
 
    string     |                     description                      
 --------------|------------------------------------------------------
@@ -292,7 +292,7 @@ are valid in the [List](#list) representation:
  sun          | Sun Internet Standards Source License (SISSL)
  zlib         | zlib License
 
-The following [License Strings](#license_string) are also valid and indicate
+The following [License Strings](#License.String) are also valid and indicate
 other licensing not described above:
 
    string     |                     description                      
@@ -302,7 +302,7 @@ other licensing not described above:
  unrestricted | Not an OSI approved license, but not restricted
  unknown      | License not provided in metadata
 
-All other strings are invalid in the license [List](#list).
+All other strings are invalid in the license [List](#List).
 
 ### meta-spec ###
 
@@ -313,7 +313,7 @@ Example:
       "url": "http://pgxn.org/meta/spec.txt"
     }
 
-(Spec 1) [required] {[Map](#map)}
+(Spec 1) [required] {[Map](#Map)}
 
 This field indicates the [Version](#Version) of the PGXN Meta Spec that should
 be used to interpret the metadata. Consumers must check this key as soon as
@@ -327,7 +327,7 @@ The following keys are valid, but only `version` is required.
     against which the document was generated.
 
 =url=
-    This is a [URI](#uri) of the metadata specification document corresponding
+    This is a [URI](#URI) of the metadata specification document corresponding
     to the given version. This is strictly for human-consumption and should
     not impact the interpretation of the document.
 
@@ -337,7 +337,7 @@ Example:
 
     "name": "pgTAP"
 
-(Spec 1) [required] {[String](#string)}
+(Spec 1) [required] {[String](#String)}
 
 This field is the name of the distribution. This is usually the same as the
 name of the "main extension" in the distribution, but may be completely
@@ -350,10 +350,10 @@ Example:
 
     "version": "1.3.6"
 
-(Spec 1) [required] {[Version](#version_string)}
+(Spec 1) [required] {[Version](#Version)}
 
 This field gives the version of the distribution to which the metadata
-structure refers. Its value must be a [Version](#version_string).
+structure refers. Its value must be a [Version](#Version).
 
 Optional Fields
 --------------
@@ -364,7 +364,7 @@ Example:
 
     "description": "pgTAP is a suite of database functions that make it easy to write TAP-emitting unit tests in psql scripts or xUnit-style test functions."
 
-(Spec 1) [optional] {[String](#string)}
+(Spec 1) [optional] {[String](#String)}
 
 A longer, more complete description of the purpose or intended use of the
 distribution than the one provided by the `abstract` key.
@@ -375,7 +375,7 @@ Example:
 
     "generated_by": "Module::Build::PGXN version 0.42"
 
-(Spec 1) [optional] {[String](#string)}
+(Spec 1) [optional] {[String](#String)}
 
 This field indicates the tool that was used to create this metadata. There are
 no defined semantics for this field, but it is traditional to use a string in
@@ -388,9 +388,9 @@ Example:
 
     "keywords": [ "testing", "unit testing", "tap" ]
 
-(Spec 1) [optional] {[List](#list) of [Strings](#string)}
+(Spec 1) [optional] {[List](#List) of [Strings](#String)}
 
-A [List](#list) of keywords that describe this distribution.
+A [List](#List) of keywords that describe this distribution.
 
 ### no_index ###
 
@@ -401,20 +401,20 @@ Example:
       "directory": [ 'src/private' ],
     }
 
-(Spec 1) [optional] {[Map](#map)}
+(Spec 1) [optional] {[Map](#Map)}
 
-This [Map](#map) describes any files or directories that are private to the
+This [Map](#Map) describes any files or directories that are private to the
 packaging or implementation of the distribution and should be ignored by
 indexing or search tools.
 
 Valid subkeys are as follows:
 
 =file
-    A [List](#list) of relative paths to files. Paths **must be** specified
+    A [List](#List) of relative paths to files. Paths **must be** specified
     with unix conventions.
 
 =directory=
-    A [List]#list) of relative paths to directories. Paths **must be**
+    A [List](#List) of relative paths to directories. Paths **must be**
     specified with unix conventions.
 
 ### prereqs ###
@@ -446,17 +446,17 @@ Example:
       }
     }
 
-(Spec 1) [optional] {[Map](#map)}
+(Spec 1) [optional] {[Map](#Map)}
 
-This is a [Map](#map) that describes all the prerequisites of the
+This is a [Map](#Map) that describes all the prerequisites of the
 distribution. The keys are phases of activity, such as `configure`, `build`,
-`test`, or `runtime`. Values are [Maps](#map) in which the keys name the type
+`test`, or `runtime`. Values are [Maps](#Map) in which the keys name the type
 of prerequisite relationship such as `requires`, `recommends`, or `suggests`,
 and the values provide sets of prerequisite relations. The sets of relations
-**must** be specified as a [Map](#map) of extension names to
-[Versions](#version_string).
+**must** be specified as a [Map](#Map) of extension names to
+[Versions](#Version).
 
-The full definition for this field is given in the [Prereq Spec](#prereq_spec)
+The full definition for this field is given in the [Prereq Spec](#Prereq.Spec)
 section.
 
 ### provides ###
@@ -473,14 +473,14 @@ Example:
       }
     }
 
-(Spec 1) [optional] {[Map](#map)}
+(Spec 1) [optional] {[Map](#Map)}
 
 This describes all extensions provided by this distribution. This information
 is used by PGXN to build indexes identifying in which distributions various
 extensions can be found.
 
 The keys of `provides` are extension names that can be found within the
-distribution. The values are [Maps](#map) with the following valid subkeys:
+distribution. The values are [Maps](#Map) with the following valid subkeys:
 
 =file=
     This field is required. The value must contain a relative file path from
@@ -496,7 +496,7 @@ Example:
 
     "release_status": "stable"
 
-(Spec 1) [optional] {[String](#string)}
+(Spec 1) [optional] {[String](#String)}
 
 This field specifies the release status of this distribution. It **must** have
 one of the following values:
@@ -540,7 +540,7 @@ Example:
       "x_twitter": "http://twitter.com/pgxn/"
     }
 
-(Spec 1) [optional] {[Map](#map)}
+(Spec 1) [optional] {[Map](#Map)}
 
 This field describes resources related to this distribution.
 
@@ -551,10 +551,10 @@ Valid subkeys include:
 
 =bugtracker=
     This entry describes the bug tracking system for this distribution. It is
-    a [Map](#map) with the following valid keys:
+    a [Map](#Map) with the following valid keys:
 
     =web=
-        a <a href="#uri">URI</a> pointing to a web front-end for the bug
+        a <a href="#URI">URI</a> pointing to a web front-end for the bug
         tracker
 
     =mailto=
@@ -562,13 +562,13 @@ Valid subkeys include:
 
 =repository=
     This entry describes the source control repository for this distribution.
-    It is a <a href="#map">Map</a> with the following valid keys:
+    It is a <a href="#Map">Map</a> with the following valid keys:
 
     =url=
-        a [URI](#uri) pointing to the repository itself
+        a [URI](#URI) pointing to the repository itself
 
     =web=
-        a [URI](#uri) pointing to a web front-end for the repository
+        a [URI](#URI) pointing to a web front-end for the repository
 
     =type=
         a lowercase string indicating the VCS used
@@ -584,7 +584,7 @@ Version Numbers
 Version Format
 --------------
 
-This section defines the [Version](#version_string) type, used by several
+This section defines the [Version](#Version) type, used by several
 fields in the PGXN Meta Spec.
 
 Version numbers must be treated as strings, and adhere to the [Semantic
@@ -731,7 +731,7 @@ Comparing Version Numbers
 -------------------------
 
 Following the [Semantic Versioning Spec](http://semver.org/), version numbers
-**must** be strictly compared by splitting the [Version](#version_string)
+**must** be strictly compared by splitting the [Version](#Version)
 string on full stop characters (i.e. "dots", "periods" or "decimal points")
 and comparing each of the three parts as integers. If an ASCII string has been
 appended to the third number, it will be extracted and compared in
