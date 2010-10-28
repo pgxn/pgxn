@@ -502,17 +502,17 @@ This field specifies the release status of this distribution. It **must** have
 one of the following values:
 
 =stable=
-    Indicates an ordinary, “final” release that should be indexed by PGXN.
+    Indicates an ordinary, "final" release that should be indexed by PGXN.
 
 =testing=
-    Indicates a “beta” release that is substantially complete, but has an
+    Indicates a "beta" release that is substantially complete, but has an
     elevated risk of bugs and requires additional testing. The distribution
     should not be installed over a stable release without an explicit request
     or other confirmation from a user. This release status may also be used
-    for “release candidate” versions of a distribution.
+    for "release candidate" versions of a distribution.
 
 =unstable=
-    Indicates an “alpha” release that is under active development, but has
+    Indicates an "alpha" release that is under active development, but has
     been released for early feedback or testing and may be missing features or
     may have serious bugs. The distribution should not be installed over a
     stable release without an explicit request or other confirmation from a
