@@ -1,0 +1,132 @@
+<!--
+ ____________________________________________________________
+|                                                            |
+|    DESIGN + Pat Heard { http://fullahead.org }             |
+|      DATE + 2006.03.19                                     |
+| COPYRIGHT + Free use if this notice is left in place       |
+|____________________________________________________________|
+
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-AU">
+  <head>
+    <title>PGXN Search</title>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+    <meta name="keywords" content="PostgreSQL, extensions, PGXN, PostgreSQL Extension Network" />
+    <meta name="description" content="Search all indexed extensions, distributions, owners, and tags on the PostgreSQL Extension Network." />
+    <link rel="stylesheet" type="text/css" href="ui/css/html.css" media="screen, projection, tv " />
+    <link rel="stylesheet" type="text/css" href="ui/css/layout.css" media="screen, projection, tv" />
+    <link rel="stylesheet" type="text/css" href="ui/css/print.css" media="print" />
+  </head>
+
+  <body>
+
+    <!-- CONTENT: Holds all site content except for the footer.  This is what causes the footer to stick to the bottom -->
+    <div id="content">
+      <!-- HEADER: Holds title, subtitle and header images -->
+      <div id="header">
+
+        <div id="title">
+          <h1>PGXN</h1>
+          <h2>PostgreSQL Extension Network</h2>
+        </div>
+      </div>
+
+      <!-- MAIN MENU: Top horizontal menu of the site.  Use class="here" to turn the current page tab on -->
+      <div id="mainMenu">
+        <ul class="floatRight">
+          <li><a href="#" title="About PGXN">About</a></li>
+          <li><a href="#" title="Owners">Owners</a></li>
+          <li><a href="#" title="Recent Uploads">Recent</a></li>
+          <li><a href="#" title="News">News</a></li>
+          <li><a href="#" title="Frequently Asked Questions">FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- PAGE CONTENT BEGINS: This is where you would define the columns (number, width and alignment) -->
+      <div id="page">
+        <div class="width75 floatLeft">
+
+            <form id="homesearch" action="results.html" enctype="application/x-www-form-urlencoded; charset=UTF-8" method="get">
+              <fieldset>
+                <input type="text" class="width50" name="q" />
+              </fieldset>
+              <fieldset>
+                <lable>in</label>
+                <select name="in">
+                  <option value="" selected="selected">All</option>
+                  <option value="extensions">Extensions</option><!-- Will search docs. -->
+                  <option value="distributions">Distributions</option><!-- Will search metadata -->
+                  <option value="owners">Owners</option><!-- Name, email, URI, etc. -->
+                  <option value="tags">Tags</option>
+                </select>
+                <input type="submit" value="PGXN Search" class="button"/>
+              </fieldset>
+            </form>
+
+        </div>
+
+        <!-- 75 percent width column, aligned to the right -->
+        <div class="width25 floatRight gradient">
+          <h1>PGXN</h1>
+          <p>PGXN, the PostgreSQL Extension network, is a central distribution
+          system for open-source PostgreSQL extension libraries.</p>
+
+          <h3>Founders</h3>
+          <div id="founders">
+          <a href="http://www.myyearbook.com/" title="myYearbook"><img src="http://pgxn.org/images/myyearbook.png" alt="myYearbook.com" /></a>
+          <a href="http://www.pgexperts.com/" title="PostgreSQL Experts, Inc."><img src="http://pgxn.org/images/pgx.png" alt="PGX" /></a>
+          <a href="http://www.dalibo.org/en/" title="Dalibo"><img src="http://pgxn.org/images/dalibo.png" alt="Dalibo" /></a>
+          </div>
+
+          <h3>Benefactors</h3>
+          <ul>
+            <li><a href="http://www.etsy.com/">Etsy</a></li>
+            <li><a href="https://www.postgresql.us/">United States PostgreSQL Association</a></li>
+            <li><a href="http://www.commandprompt.com/">Command Prompt, Inc.</a></li>
+            <li><a href="http://www.marchex.com/">Marchex</a></li>
+          </ul>
+
+          <!-- <p>One of the primary distinguishing features of PostgreSQL—and -->
+          <!-- perhaps the number one reason to use it instead of another DBMS—is -->
+          <!-- its extensibility and the large number of database extensions. -->
+          <!-- PostgreSQL today is not merely a database, it’s an application -->
+          <!-- development platform.</p> -->
+
+          <!-- <p>PGXN provides centralized listings and searchable documentation -->
+          <!-- for PostgreSQL extensions. Here you can search through -->
+          <!-- extensions, browse their documentation, and download and install -->
+          <!-- those that fill your needs.</p> -->
+
+          <!-- <p>If you’d like to distribute your extensions on PostgreSQL, -->
+          <!-- <a href="http://manager.pgxn.org/account/register">register</a> for -->
+          <!-- a <a href="http://manager.pgxn.org">PGXN Manager</a> account and -->
+          <!-- read the <a href="http://manager.pgxn.org/howto">disribution how to</a>.</p> -->
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- FOOTER: Site footer for links, copyright, etc. -->
+    <div id="footer">
+      <div id="width">
+        <span class="floatLeft">
+          code <a href="http://justatheory.com/" title="Go to Just a Theory">theory</a> <span class="grey">|</span>
+          design <a href="http://fullahead.org/" title="Goto Fullahead">Fullahead</a> <span class="grey">|</span>
+          logo <a href="http://strongrrl.com/" title="Goto Strongrrl">Strongrrl</a>
+        </span>
+        
+        <span class="floatRight">
+          <a href="#" title="Feedback">feedback</a>
+          <!-- <a href="#" title="Learn how to use the template">help</a> <span class="grey">|</span> -->
+          <!-- <a href="#" title="View the styled tags">tags</a> <span class="grey">|</span> -->
+          <!-- <a href="#" title="View the print layout">print</a> <span class="grey">|</span> -->
+          <!-- <a href="#" title="Get in touch">mail</a> -->
+        </span>
+      </div>
+    </div>
+  </body>
+</html>
