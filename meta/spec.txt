@@ -1,0 +1,833 @@
+<div id="synopsis"></div>
+Synopsis
+========
+
+    {
+       "name": "pgTAP",
+       "abstract": "Unit testing for PostgreSQL",
+       "description": "pgTAP is a suite of database functions that make it easy to write TAP-emitting unit tests in psql scripts or xUnit-style test functions.",
+       "version": "0.2.5",
+       "maintainer": [
+          "David E. Wheeler <theory@pgxn.org>",
+          "pgTAP List <pgtap-users@pgfoundry.org>"
+       ],
+       "license": {
+          "PostgreSQL": "http://www.postgresql.org/about/licence"
+       },
+       "prereqs": {
+          "runtime": {
+             "requires": {
+                "plpgsql": 0,
+                "PostgreSQL": "8.0.0"
+             },
+             "recommends": {
+                "PostgreSQL": "8.4.0"
+             }
+          }
+       },
+       "resources": {
+          "homepage": "http://pgtap.org/",
+          "bugtracker": {
+             "web": "http://github.com/theory/pgtap/issues"
+          },
+          "repository": {
+            "url":  "git://github.com/theory/pgtap.git",
+            "web":  "http://github.com/theory/pgtap",
+            "type": "git"
+          }
+       },
+       "generated_by": "David E. Wheeler",
+       "meta-spec": {
+          "version": "1.0.0",
+          "url": "http://pgxn.org/meta/spec.txt"
+       },
+       "tags": [
+          "testing",
+          "unit testing",
+          "tap",
+          "tddd",
+          "test driven database development"
+       ]
+    }
+
+<div id="descr"></div>
+Description
+===========
+
+This document describes version 1.0.0dev2 of the PGXN distribution metadata
+specification, also known as the "PGXN Meta Spec." This document is in flux,
+and may change before version 1.0.0. At that time, it will be considered
+stable, and any revisions to this specification for typo corrections and prose
+clarifications may be issued as PGXN::Meta::Spec 1.0.*x*. These revisions will
+never change semantics or add or remove specified behavior.
+
+Distribution metadata describe important properties of PGXN distributions.
+Distribution building tools should create a metadata file in accordance
+with this specification and include it with the distribution for use by
+automated tools that index, examine, package, or install PGXN distributions.
+
+<div id="terminology"></div>
+Terminology
+===========
+
+<dl>
+  <dt>distribution</dt>
+  <dd><p>The primary object described by the metadata. In the context of this
+  document it usually refers to a collection of extensions, SQL scripts,
+  tests, and/or documents that are distributed together for other developers
+  to use. Examples of distributions are <a
+  href="http://pgtap.org/"><code>pgTAP</code></a>, <a
+  href="http://pgfoundry.org/projects/uri/"><code>uri</code></a>, and <a
+  href="http://www.postgis.org/"><code>PostGIS</code></a>.</p></dd>
+
+  <dt>extension</dt>
+  <dd><p>A reusable library of code contained in a single file or within files
+  referenced by the (forthcoming) <a
+  href="http://wiki.postgresql.org/wiki/ExtensionPackaging"><code>CREATE
+  EXTENSION</code> statement</a>. Extensions usually contain one or more
+  PostgreSQL objects -- such as data types, functions, and operators -- and
+  are often referred to by the name of a primary object that can be mapped to
+  the file name. For example, one might refer to <code>pgTAP</code> instead of
+  <code>sql/pgtap.sql</code>.</p></dd>
+
+  <dt>consumer</dt>
+  <dd><p>Code that reads a metadata file, deserializes it into a data
+  structure in memory, or interprets a data structure of metadata
+  elements.</p></dd>
+
+  <dt>producer</dt>
+  <dd><p>Code that constructs a metadata data structure, serializes into a
+  bytestream and/or writes it to disk.</p></dd>
+
+  <dt>must, should, may, etc.</dt>
+  <dd><p>These terms are interpreted as described in <a
+  href="http://www.ietf.org/rfc/rfc2119.txt">IETF RFC 2119</a>.</p></dd>
+</dl>
+
+<div id="data_types"></div>
+Data Types
+==========
+
+Fields in the [Structure](#structure) section describe data elements, each of
+which has an associated data type as described herein. There are four
+primitive types: *Boolean*, *String*, *List*, and *Map*. Other types are
+subtypes of primitives and define compound data structures or define
+constraints on the values of a data element.
+
+<div id="boolean"></div>
+Boolean
+-------
+
+A *Boolean* is used to provide a true or false value. It **must** be
+represented as a defined (not `null`) value.
+
+<div id="string"></div>
+String
+------
+
+A *String* is data element containing a non-zero length sequence of Unicode
+characters.
+
+<div id="list"></div>
+List
+----
+
+A *List* is an ordered collection of zero or more data elements. Elements of a
+List may be of mixed types.
+
+Producers **must** represent List elements using a data structure which
+unambiguously indicates that multiple values are possible, such as a
+JavaScript array.
+
+Consumers expecting a List **must** consider a [String](#string) as equivalent
+to a List of length 1.
+
+<div id="map"></div>
+Map
+---
+
+A *Map* is an unordered collection of zero or more data elements ("values"),
+indexed by associated [String](#string) elements ("keys"). The Map's value
+elements may be of mixed types.
+
+<div id="license_string"></div>
+License String
+--------------
+
+A *License String* is a subtype of [String](#string) with a restricted set of
+values. Valid values are described in detail in the description of the
+[license field](#license).
+
+<div id="uri"></div>
+URI
+---
+
+*URI* is a subtype of [String](#string) containing a Uniform Resource
+Identifier or Locator.
+
+<div id="version_string"></div>
+Version
+-------
+
+A *Version* is a subtype of [String](#string) containing a value that
+describes the version number of packages or distributions. Restrictions on
+format are described in detail in the [Version Format](#version_format)
+section.
+
+<div id="structure"></div>
+Structure
+=========
+
+The metadata structure is a data element of type [Map](#map). This section
+describes valid keys within the [Map](#map).
+
+Any keys not described in this specification document (whether top-level or
+within compound data structures described herein) are considered *custom keys*
+and **must** begin with an "x" or "X" and be followed by an underscore; i.e.
+they must match the pattern: `/\Ax_/i`. If a custom key refers to a compound
+data structure, subkeys within it do not need an "x_" or "X_" prefix.
+
+Consumers of metadata may ignore any or all custom keys. All other keys not
+described herein are invalid and should be ignored by consumers. Producers
+must not generate or output invalid keys.
+
+For each key, an example is provided followed by a description. The
+description begins with the version of spec in which the key was added or in
+which the definition was modified, whether the key is *required* or
+*optional*, and the data type of the corresponding data element. These items
+are in parentheses, brackets, and braces, respectively.
+
+If a data type is a [Map](#map) or [Map](#map) subtype, valid subkeys will be
+described as well. All examples are represented as [JSON](http://json.org/).
+
+<!-- Nothing deprecated yet.
+
+Some fields are marked *Deprecated*. These are shown for historical context
+and must not be produced in or consumed from any metadata structure of version
+1 or higher.
+
+-->
+
+<div id="required_fields"></div>
+Required Fields
+---------------
+
+<div id="abstract"></div>
+### abstract ###
+
+Example:
+
+    "abstract": 'Unit testing for PostgreSQL"
+
+(Spec 1) [required] {[String](#string)}
+
+This is a short description of the purpose of the distribution.
+
+<div id="maintainer"></div>
+<div id="owner"><!-- deprecated --></div>
+### maintainer ###
+
+Examples:
+
+    "maintainer": "David E. Wheeler <theory@pgxn.org>"
+
+    "maintainer": [
+      "David E. Wheeler <theory@pgxn.org>",
+      "Josh Berkus <jberkus@pgxn.org>"
+    ]
+
+(Spec 1) [required] {[List](#list) of one or more [Strings](#string)}
+
+This [List](#list) indicates the person(s) to contact concerning the
+distribution. The preferred form of the contact string is:
+
+    contact-name <email-address>
+
+This field provides a general contact list independent of other structured
+fields provided within the [resources](#resources) field, such as
+`bugtracker`. The addressee(s) can be contacted for any purpose including but
+not limited to: (security) problems with the distribution, questions about the
+distribution, or bugs in the distribution.
+
+A distribution's original author is usually the contact listed within this
+field. Co-maintainers, successor maintainers or mailing lists devoted to the
+distribution may also be listed in addition to or instead of the original
+author.
+
+<div id="license"></div>
+### license ###
+
+Examples:
+
+    "license": {
+      "PostgreSQL": "http://www.postgresql.org/about/licence"
+    }
+
+    "license": {
+      "Perl 5": "http://dev.perl.org/licenses/",
+      "BSD": "http://www.opensource.org/licenses/bsd-license.html"
+    }
+
+    "license": "perl_5"
+
+    "license": [ "apache_2", "mozilla_1_0" ]
+
+(Spec 1) [required] {[Map](#map) or [List](#list) of one or more
+[License Strings](#license_string)}
+
+One or more licenses that apply to some or all of the files in the
+distribution. If multiple licenses are listed, the distribution documentation
+should be consulted to clarify the interpretation of multiple licenses.
+
+The [Map](#map) type describes the license or licenses. Each subkey may be any
+string naming a license. All values must be [URIs](#uri) that link to the
+appropriate license.
+
+The [List](#list) type may be used as a shortcut to identify one or more
+well-known licenses. The following list of [License Strings](#license_string)
+are valid in the [List](#list) representation:
+
+<table>
+  <tr><th>string</th><th>description</th></tr>
+  <tr><td>agpl_3</td><td>GNU Affero General Public License, Version 3</td></tr>
+  <tr><td>apache_1_1</td><td>Apache Software License, Version 1.1</td></tr>
+  <tr><td>apache_2_0</td><td>Apache License, Version 2.0</td></tr>
+  <tr><td>artistic_1</td><td>Artistic License, (Version 1)</td></tr>
+  <tr><td>artistic_2</td><td>Artistic License, Version 2.0</td></tr>
+  <tr><td>bsd</td><td>BSD License (three-clause)</td></tr>
+  <tr><td>freebsd</td><td>FreeBSD License (two-clause)</td></tr>
+  <tr><td>gfdl_1_2</td><td>GNU Free Documentation License, Version 1.2</td></tr>
+  <tr><td>gfdl_1_3</td><td>GNU Free Documentation License, Version 1.3</td></tr>
+  <tr><td>gpl_1</td><td>GNU General Public License, Version 1</td></tr>
+  <tr><td>gpl_2</td><td>GNU General Public License, Version 2</td></tr>
+  <tr><td>gpl_3</td><td>GNU General Public License, Version 3</td></tr>
+  <tr><td>lgpl_2_1</td><td>GNU Lesser General Public License, Version 2.1</td></tr>
+  <tr><td>lgpl_3_0</td><td>GNU Lesser General Public License, Version 3.0</td></tr>
+  <tr><td>mit</td><td>MIT (aka X11) License</td></tr>
+  <tr><td>mozilla_1_0</td><td>Mozilla Public License, Version 1.0</td></tr>
+  <tr><td>mozilla_1_1</td><td>Mozilla Public License, Version 1.1</td></tr>
+  <tr><td>openssl</td><td>OpenSSL License</td></tr>
+  <tr><td>perl_5</td><td>The Perl 5 License (Artistic 1 &amp; GPL 1 or later)</td></tr>
+  <tr><td>postgresql</td><td>The PostgreSQL License</td></tr>
+  <tr><td>qpl_1_0</td><td>Q Public License, Version 1.0</td></tr>
+  <tr><td>ssleay</td><td>Original SSLeay License</td></tr>
+  <tr><td>sun</td><td>Sun Internet Standards Source License (SISSL)</td></tr>
+  <tr><td>zlib</td><td>zlib License</td></tr>
+</table>
+
+The following [License Strings](#license_string) are also valid and indicate
+other licensing not described above:
+
+<table>
+  <tr><th>string</th><th>description</th></tr>
+  <tr><td>open_source</td><td>Other Open Source Initiative (OSI) approved license</td></tr>
+  <tr><td>restricted</td><td>Requires special permission from copyright holder</td></tr>
+  <tr><td>unrestricted</td><td>Not an OSI approved license, but not restricted</td></tr>
+  <tr><td>unknown</td><td>License not provided in metadata</td></tr>
+</table>
+
+All other strings are invalid in the license [List](#list).
+
+<div id="meta_spec"></div>
+### meta-spec ###
+
+Example:
+
+    "meta-spec": {
+      "version": "1.0.0",
+      "url": "http://pgxn.org/meta/spec.txt"
+    }
+
+(Spec 1) [required] {[Map](#map)}
+
+This field indicates the [Version](#version_string) of the PGXN Meta Spec that
+should be used to interpret the metadata. Consumers must check this key as
+soon as possible and abort further metadata processing if the meta-spec
+[Version](#version_string) is not supported by the consumer.
+
+The following keys are valid, but only `version` is required.
+
+<dl>
+  <dt>version</dt>
+  <dd><p>This subkey gives the integer <a href="#version_string">Version</a>
+  of the PGXN Meta Spec against which the document was generated.</p></dd>
+
+  <dt>url</dt>
+  <dd><p>This is a <a href="#uri">URI</a> of the metadata specification
+  document corresponding to the given version. This is strictly for
+  human-consumption and should not impact the interpretation of the
+  document.</p></dd>
+
+</dl>
+
+<div id="name"></div>
+### name ###
+
+Example:
+
+    "name": "pgTAP"
+
+(Spec 1) [required] {[String](#string)}
+
+This field is the name of the distribution. This is usually the same as the
+name of the "main extension" in the distribution, but may be completely
+unrelated to the extensions within the distribution. This string should have
+no spaces in it, and will be used for the distribution file name on PGXN.
+
+<div id="version"></div>
+### version ###
+
+Example:
+
+    "version": "1.3.6"
+
+(Spec 1) [required] {[Version](#version_string)}
+
+This field gives the version of the distribution to which the metadata
+structure refers. Its value must be a [Version](#version_string).
+
+<div id="optional_fields"></div>
+Optional Fields
+--------------
+
+<div id="description"></div>
+### description ###
+
+Example:
+
+    "description": "pgTAP is a suite of database functions that make it easy to write TAP-emitting unit tests in psql scripts or xUnit-style test functions."
+
+(Spec 1) [optional] {[String](#string)}
+
+A longer, more complete description of the purpose or intended use of the
+distribution than the one provided by the `abstract` key.
+
+<div id="generated_by"></div>
+### generated_by ###
+
+Example:
+
+    "generated_by": "Module::Build::PGXN version 0.42"
+
+(Spec 1) [optional] {[String](#string)}
+
+This field indicates the tool that was used to create this metadata. There are
+no defined semantics for this field, but it is traditional to use a string in
+the form "Software package version 1.23" or the maintainer's name, if the file
+was generated by hand.
+
+<div id="tags"></div>
+### tags ###
+
+Example:
+
+    "keywords": [ "testing", "unit testing", "tap" ]
+
+(Spec 1) [optional] {[List](#list) of [Strings](#string)}
+
+A [List](#list) of keywords that describe this distribution.
+
+<div id="no_index"></div>
+### no_index ###
+
+Example:
+
+    "no_index": {
+      "file":      [ 'src/file.sql' ],
+      "directory": [ 'src/private' ],
+    }
+
+(Spec 1) [optional] {[Map](#map)}
+
+This [Map](#map) describes any files or directories that are private to the
+packaging or implementation of the distribution and should be ignored by
+indexing or search tools.
+
+Valid subkeys are as follows:
+
+<dl>
+  <dt>file</dt>
+  <dd><p>A <a href="#list">List</a> of relative paths to files. Paths
+  <strong>must be</strong> specified with unix conventions.</p></dd>
+
+  <dt>directory</dt>
+  <dd><p>A <a href="#list">List</a> of relative paths to directories. Paths
+  <strong>must be</strong> specified with unix conventions.</p></dd>
+</dl>
+
+<div id="prereqs"></div>
+### prereqs ###
+
+Example:
+
+    "prereqs": {
+      "runtime": {
+        "requires": {
+          "PostgreSQL": "8.0.0",
+          "PostGIS": "1.5.0"
+        },
+        "recommends": {
+          "PostgreSQL": "8.4.0"
+        },
+        "suggests": {
+          "Archive::Tar": 0
+        },
+      },
+      "build": {
+        "requires": {
+          "prefix": 0
+        },
+      },
+      "test": {
+        "recommends": {
+          "pgTAP": 0
+        },
+      }
+    }
+
+(Spec 1) [optional] {[Map](#map)}
+
+This is a [Map](#map) that describes all the prerequisites of the
+distribution. The keys are phases of activity, such as `configure`, `build`,
+`test`, or `runtime`. Values are [Maps](#map) in which the keys name the type
+of prerequisite relationship such as `requires`, `recommends`, or `suggests`,
+and the values provide sets of prerequisite relations. The sets of relations
+**must** be specified as a [Map](#map) of extension names to
+[Versions](#version_string).
+
+The full definition for this field is given in the [Prereq Spec](#prereq_spec)
+section.
+
+<div id="provides"></div>
+### provides ###
+
+Example:
+
+  "provides": {
+      "pgtap": {
+        "file": "sql/pgtap.sql.in",
+        "version": "0.2.4"
+      },
+      "schematap": {
+        "file": "sql/schematap.sql.in"
+      }
+    }
+
+(Spec 1) [optional] {[Map](#map)}
+
+This describes all extensions provided by this distribution. This information
+is used by PGXN to build indexes identifying in which distributions various
+extensions can be found.
+
+The keys of `provides` are extension names that can be found within the
+distribution. The values are [Maps](#map) with the following valid subkeys:
+
+<dl>
+  <dt>file</dt>
+  <dd><p>This field is required. The value must contain a relative file path
+  from the root of the distribution to the file containing the extension.
+  The path <strong>must be</strong> specified with unix conventions.</p></dd>
+
+  <dt>version</dt>
+  <dd><p>This field contains a <a href="#version_string">Version</a> for the
+  package, if one exists.</p></dd>
+</dl>
+
+<div id="release_status"></div>
+### release_status ###
+
+Example:
+
+    "release_status": "stable"
+
+(Spec 1) [optional] {[String](#string)}
+
+This field specifies the release status of this distribution. It **must** have
+one of the following values:
+
+<dl>
+  <dt>stable</dt>
+  <dd><p>Indicates an ordinary, “final” release that should be indexed by
+  PGXN.</p></dd>
+
+  <dt>testing</dt>
+  <dd><p>Indicates a “beta” release that is substantially complete, but
+  has an elevated risk of bugs and requires additional testing. The
+  distribution should not be installed over a stable release without an
+  explicit request or other confirmation from a user. This release status may
+  also be used for “release candidate” versions of a distribution.</p></dd>
+
+  <dt>unstable</dt>
+  <dd><p>Indicates an “alpha” release that is under active development,
+  but has been released for early feedback or testing and may be missing
+  features or may have serious bugs. The distribution should not be installed
+  over a stable release without an explicit request or other confirmation from
+  a user.</p></dd>
+</dl>
+
+Consumers **may** use this field to determine how to index the distribution
+for PGXN or other repositories. If this field is not present, consumers
+**may** assume that the distribution status is "stable."
+
+<div id="resources"></div>
+### resources ###
+
+Example:
+
+    "resources": {
+      "homepage": "http://pgxn.org/",
+      "bugtracker": {
+        "web": "http://github.com/theory/pgxn/issues",
+        "mailto": "pgxn-bugs@example.com"
+      },
+      "repository": {
+        "url": "git://github.com/theory/pgxn.git",
+        "web": "http://github.com/theory/pgxn/",
+        "type": "git"
+      },
+      "x_twitter": "http://twitter.com/pgxn/"
+    }
+
+(Spec 1) [optional] {[Map](#map)}
+
+This field describes resources related to this distribution.
+
+Valid subkeys include:
+
+<dl>
+  <dt>homepage</dt>
+  <dd><p>The official home of this project on the web.</p></dd>
+
+  <dt>bugtracker</dt>
+  <dd><p>This entry describes the bug tracking system for this distribution.
+  It is a <a href="#map">Map</a> with the following valid keys:</p>
+
+  <dl>
+    <dt>web</dt>
+    <dd><p>a <a href="#uri">URI</a> pointing to a web front-end for the bug
+    tracker</p></dd>
+    <dt>mailto</dt>
+    <dd><p>an email address to which bug reports can be sent</p></dd>
+  </dl></dd>
+
+  <dt>repository</dt>
+  <dd><p>This entry describes the source control repository for this
+  distribution. It is a <a href="#map">Map</a> with the following valid
+  keys:</p>
+
+  <dl>
+    <dt>url</dt>
+    <dd><p>a <a href="#uri">URI</a> pointing to the repository itself</p></dd>
+    <dt>web</dt>
+    <dd><p>a <a href="#uri">URI</a> pointing to a web front-end for the
+    repository</p></dd>
+    <dt>type</dt>
+    <dd><p>a lowercase string indicating the VCS used</p></dd>
+  </dl>
+
+  <p>Because a URI like <code>http://myrepo.example.com/</code> is ambiguous
+  as to type, producers should provide a <code>type</code> whenever a
+  <code>url</code> key is given. The <code>type</code> field should be the
+  name of the most common program used to work with the repository, e.g. git,
+  svn, cvs, darcs, bzr or hg.</p></dd>
+</dl>
+
+Version Numbers
+===============
+
+<div id="version_format"></div>
+Version Format
+--------------
+
+This section defines the [Version](#version_string) type, used by several
+fields in the PGXN Meta Spec.
+
+Version numbers must be treated as strings, and adhere to the [Semantic
+Versioning Specification](http://semver.org/). Semantic versions take a
+dotted-integer format consisting of three positive integers separated by full
+stop characters (i.e. "dots", "periods" or "decimal points"). A "special
+version" *may* be denoted by appending an arbitrary ASCII string immediately
+following the patch version.
+
+This format has the benefit not only of being fully specified, but also that
+it is supported by PostgreSQL itself. Please see
+[the specification](http://semver.org/) for all details on the format.
+
+<div id="prerequisites"></div>
+Prerequisites
+=============
+
+<div id="prereq_spec"></div>
+Prereq Spec
+-----------
+
+The `prereqs` key defines the relationship between a distribution and other
+extensions. The prereq spec structure is a hierarchical data structure which
+divides prerequisites into *Phases* of activity in the installation process
+and *Relationships* that indicate how prerequisites should be resolved.
+
+For example, to specify that `pgTAP` is `required` during the `test` phase,
+this entry would appear in the distribution metadata:
+
+    "prereqs": {
+      "test": {
+        "requires": {
+          "pgtap": 0
+        }
+      }
+    }
+
+Note that the `prereqs` key may not be used to specify prerequisites
+distributed outside PGXN or the PostgreSQL core and its contrib extensions.
+
+<div id="phases"></div>
+### Phases ###
+
+Requirements for regular use must be listed in the `runtime` phase. Other
+requirements should be listed in the earliest stage in which they are required
+and consumers must accumulate and satisfy requirements across phases before
+executing the activity. For example, `build` requirements must also be
+available during the `test` phase.
+
+<table>
+  <tr><th>before action</th><th>requirements that must be met</th></tr>
+  <tr><td>./configure</td><td>configure</td></tr>
+  <tr><td>make</td><td>configure, runtime, build</td></tr>
+  <tr><td>make test</td><td>configure, runtime, build, test</td></tr>
+</table>
+
+Consumers that install the distribution must ensure that *runtime*
+requirements are also installed and may install dependencies from other
+phases.
+
+<table>
+  <tr><th>after action</th><th>requirements that must be met</th></tr>
+  <tr><td>make install</td><td>runtime</td></tr>
+</table>
+
+<dl>
+  <dt>configure</dt>
+  <dd><p>The configure phase occurs before any dynamic configuration has been
+  attempted. Extensions required by the configure phase <strong>must</strong>
+  be available for use before the distribution building tool has been
+  executed.</p></dd>
+
+  <dt>build</dt>
+  <dd><p>The build phase is when the distribution's source code is compiled
+  (if necessary) and otherwise made ready for installation.</p></dd>
+
+  <dt>test</dt>
+  <dd><p>The test phase is when the distribution's automated test suite is
+  run. Any extension needed only for testing and not for subsequent use should
+  be listed here.</p></dd>
+
+  <dt>runtime</dt>
+  <dd><p>The runtime phase refers not only to when the distribution's contents
+  are installed, but also to its continued use. Any extension that is a
+  prerequisite for regular use of this distribution should be indicated
+  here.</p></dd>
+
+  <dt>develop</dt>
+  <dd><p>The develop phase's prereqs are extensions needed to work on the
+  distribution's source code as its maintainer does. These tools might be
+  needed to build a release tarball, to run maintainer-only tests, or to
+  perform other tasks related to developing new versions of the
+  distribution.</p></dd>
+</dl>
+
+<div id="relationships"></div>
+### Relationships ###
+
+<dl>
+  <dt>requires</dt>
+  <dd><p>These dependencies <strong>must</strong> be installed for proper
+  completion of the phase.</p></dd>
+
+  <dt>recommends</dt>
+  <dd><p>Recommended dependencies are <em>strongly</em> encouraged and should
+  be satisfied except in resource constrained environments.</p></dd>
+
+  <dt>suggests</dt>
+  <dd><p>These dependencies are optional, but are suggested for enhanced
+  operation of the described distribution.</p></dd>
+</dl>
+
+<div id="prereq_resolution"></div>
+Merging and Resolving Prerequisites
+-----------------------------------
+
+Whenever metadata consumers merge prerequisites, they should be merged in a
+way that preserves the intended semantics of the prerequisite structure.
+
+Another subtle error that can occur when resolving prerequisites comes from
+the way that extensions in prerequisites are indexed to distribution files on
+PGXN. When a extension is deleted from a distribution, prerequisites calling
+for that extension could indicate that an older distribution should installed,
+potentially overwriting files from a newer distribution.
+
+For example, say the PGXN index contained these extension-distribution
+mappings:
+
+<table>
+  <tr><th>Extension</th><th>Version</th><th>Distribution</th></tr>
+  <tr><td>pgtap</td><td>0.25.0</td><td>pgTAP-0.25.0.pgz</td></tr>
+  <tr><td>schmeatap</td><td>0.25.0</td><td>pgTAP-0.25.0.pgz</td></tr>
+  <tr><td>functap</td><td>0.18.1</td><td>pgTAP-0.18.1.pgz</td></tr>
+</table>
+
+Note that functap was removed from the pgTAP distribution sometime after
+0.18.1. Consider the case where pgTAP 0.25.0 is installed. If a distribution
+specified "functap" as a prerequisite, it could result in
+`pgTAP-0.18.1.tar.gz` being installed, overwriting any files from
+`pgTAP-0.25.0.pgz`.
+
+Consumers of metadata **should** test whether prerequisites would result in
+installed module files being "downgraded" to an older version and **may** warn
+users or ignore the prerequisite that would cause such a result.
+
+<div id="serialization"></div>
+Serialization
+=============
+
+Distribution metadata should be serialized as JSON-encoded data and packaged
+with distributions as the file `META.json`.
+
+<div id="implementor_notes"></div>
+Notes For Implementors
+======================
+
+<div id="comparing_versions"></div>
+Comparing Version Numbers
+-------------------------
+
+Following the [Semantic Versioning Spec](http://semver.org/), version numbers
+**must** be strictly compared by splitting the [Version](#version_string)
+string on full stop characters (i.e. "dots", "periods" or "decimal points")
+and comparing each of the three parts as integers. If an ASCII string has been
+appended to the third number, it will be extracted and compared in
+ASCII-betical order, and in any event will be considered to be less than an
+un-encumbered third integer of the same value. Some examples:
+
+    0.12.1      < 0.12.2
+    1.42.0      > 1.41.99
+    2.0.0       > 1.999.999
+    2.0.0alpha3 < 2.0.0beta1
+    2.0.0beta   < 2.0.0
+
+<div id="see_also"></div>
+See Also
+========
+
+* [CPAN Meta Spec](http://search.cpan.org/perldoc?CPAN::Meta::Spec)
+* [PGXN](http://www.pgxn.org/)
+* [JSON](http://json.org/)
+* [Semantic Verrsioning](http://semver.org/)
+
+<div id="contributors"></div>
+Contributors
+============
+
+The PGXN Meta Spec borrows heavily from the [CPAN Meta
+Spec](http://search.cpan.org/perldoc?CPAN::Meta::Spec), which was originally
+written by Ken Williams in 2003 and has since been updated by Randy Sims,
+David Golden, and Ricardo Signes. Ported to PGXN by David E. Wheeler.
