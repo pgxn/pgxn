@@ -1,3 +1,13 @@
+Name
+====
+
+PGXN Meta Spec - The PGXN distribution metadata specification
+
+Version
+=======
+
+1.0.0dev2
+
 Synopsis
 ========
 
@@ -53,11 +63,19 @@ Description
 ===========
 
 This document describes version 1.0.0dev2 of the PGXN distribution metadata
-specification, also known as the "PGXN Meta Spec." This document is in flux,
-and may change before version 1.0.0. At that time, it will be considered
-stable, and any revisions to this specification for typo corrections and prose
-clarifications may be issued as PGXN::Meta::Spec 1.0.*x*. These revisions will
-never change semantics or add or remove specified behavior.
+specification, also known as the "PGXN Meta Spec." It is written using the
+[Disount](http://www.pell.portland.or.us/~orc/Code/discount/) variant of
+[Markdown](http://daringfireball.net/projects/markdown/), and the canonical
+copy may always be found at
+[pgxn.org/meta/spec.txt](http://pgxn.org/meta/spec.txt]. A generated HTML
+version found at [pgxn.org/meta/spec.html](http://pgxn.org/meta/spec.html] may
+also be considered canonical.
+
+This document is in development, and may change before version 1.0.0. At that
+time, it will be considered stable, and any revisions to this specification
+for typo corrections and prose clarifications may be issued as "PGXN Meta Spec
+1.0.*x*". These revisions will never change semantics or add or remove
+specified behavior.
 
 Distribution metadata describe important properties of PGXN distributions.
 Distribution building tools should create a metadata file in accordance
