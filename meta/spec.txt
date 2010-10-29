@@ -6,7 +6,7 @@ PGXN Meta Spec - The PGXN distribution metadata specification
 Version
 =======
 
-1.0.0dev2
+1.0.0dev3
 
 Synopsis
 ========
@@ -33,6 +33,16 @@ Synopsis
                 "PostgreSQL": "8.4.0"
              }
           }
+       },
+       "provides": {
+         "pgtap": {
+           "file": "sql/pgtap.sql",
+           "version": "0.2.4"
+         },
+         "schematap": {
+           "file": "sql/schematap.sql",
+           "version": "0.2.4"
+         }
        },
        "resources": {
           "homepage": "http://pgtap.org/",
@@ -62,7 +72,7 @@ Synopsis
 Description
 ===========
 
-This document describes version 1.0.0dev2 of the PGXN distribution metadata
+This document describes version 1.0.0dev3 of the PGXN distribution metadata
 specification, also known as the "PGXN Meta Spec." It is written using the
 [Disount](http://www.pell.portland.or.us/~orc/Code/discount/) variant of
 [Markdown](http://daringfireball.net/projects/markdown/), and the canonical
@@ -172,7 +182,7 @@ Version
 -------
 
 A *Version* is a subtype of [String](#String) containing a value that
-describes the version number of packages or distributions. Restrictions on
+describes the version number of extensions or distributions. Restrictions on
 format are described in detail in the [Version Format](#Version.Format)
 section.
 
@@ -481,13 +491,13 @@ section.
 
 Example:
 
-  "provides": {
+    "provides": {
       "pgtap": {
-        "file": "sql/pgtap.sql.in",
+        "file": "sql/pgtap.sql",
         "version": "0.2.4"
       },
       "schematap": {
-        "file": "sql/schematap.sql.in"
+        "file": "sql/schematap.sql"
       }
     }
 
@@ -498,15 +508,16 @@ is used by PGXN to build indexes identifying in which distributions various
 extensions can be found.
 
 The keys of `provides` are extension names that can be found within the
-distribution. The values are [Maps](#Map) with the following valid subkeys:
+distribution. The values are [Maps](#Map) with the following required subkeys:
 
 =file=
-    This field is required. The value must contain a relative file path from
-    the root of the distribution to the file containing the extension. The
-    path <strong>must be</strong> specified with unix conventions.
+    The value must contain a relative file path from the root of the
+    distribution to the file containing the extension. The path <strong>must
+    be</strong> specified with unix conventions.
 
 =version=
-    This field contains a [Version](#Version) for the package, if one exists.
+    This field contains a [Version](#Version) for the extension. All
+    extensions must have versions.
 
 ### release_status ###
 

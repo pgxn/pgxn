@@ -24,14 +24,14 @@
     <div id="content">
       <div id="main">
         <div class="article">
-          <!-- `markdown -F 0x1000 spec.txt | pbcopy` and paste here -->
+          <!-- `markdown -F 0x1000 meta/spec.txt | pbcopy` and paste here -->
 <h1 id="Name">Name</h1>
 
 <p>PGXN Meta Spec &ndash; The PGXN distribution metadata specification</p>
 
 <h1 id="Version">Version</h1>
 
-<p>1.0.0dev2</p>
+<p>1.0.0dev3</p>
 
 <h1 id="Synopsis">Synopsis</h1>
 
@@ -57,6 +57,16 @@
             "PostgreSQL": "8.4.0"
          }
       }
+   },
+   "provides": {
+     "pgtap": {
+       "file": "sql/pgtap.sql",
+       "version": "0.2.4"
+     },
+     "schematap": {
+       "file": "sql/schematap.sql",
+       "version": "0.2.4"
+     }
    },
    "resources": {
       "homepage": "http://pgtap.org/",
@@ -86,7 +96,7 @@
 
 <h1 id="Description">Description</h1>
 
-<p>This document describes version 1.0.0dev2 of the PGXN distribution metadata
+<p>This document describes version 1.0.0dev3 of the PGXN distribution metadata
 specification, also known as the &ldquo;PGXN Meta Spec.&rdquo; It is written using the
 <a href="http://www.pell.portland.or.us/~orc/Code/discount/">Disount</a> variant of
 <a href="http://daringfireball.net/projects/markdown/">Markdown</a>, and the canonical
@@ -185,7 +195,7 @@ Identifier or Locator.</p>
 <h2 id="Version">Version</h2>
 
 <p>A <em>Version</em> is a subtype of <a href="#String">String</a> containing a value that
-describes the version number of packages or distributions. Restrictions on
+describes the version number of extensions or distributions. Restrictions on
 format are described in detail in the <a href="#Version.Format">Version Format</a>
 section.</p>
 
@@ -611,14 +621,13 @@ section.</p>
 
 <p>Example:</p>
 
-<p>  &ldquo;provides&rdquo;: {</p>
-
-<pre><code>  "pgtap": {
-    "file": "sql/pgtap.sql.in",
+<pre><code>"provides": {
+  "pgtap": {
+    "file": "sql/pgtap.sql",
     "version": "0.2.4"
   },
   "schematap": {
-    "file": "sql/schematap.sql.in"
+    "file": "sql/schematap.sql"
   }
 }
 </code></pre>
@@ -630,15 +639,16 @@ is used by PGXN to build indexes identifying in which distributions various
 extensions can be found.</p>
 
 <p>The keys of <code>provides</code> are extension names that can be found within the
-distribution. The values are <a href="#Map">Maps</a> with the following valid subkeys:</p>
+distribution. The values are <a href="#Map">Maps</a> with the following required subkeys:</p>
 
 <dl>
 <dt>file</dt>
-<dd>This field is required. The value must contain a relative file path from
-the root of the distribution to the file containing the extension. The
-path <strong>must be</strong> specified with unix conventions.</dd>
+<dd>The value must contain a relative file path from the root of the
+distribution to the file containing the extension. The path <strong>must
+be</strong> specified with unix conventions.</dd>
 <dt>version</dt>
-<dd>This field contains a <a href="#Version">Version</a> for the package, if one exists.</dd>
+<dd>This field contains a <a href="#Version">Version</a> for the extension. All
+extensions must have versions.</dd>
 </dl>
 
 <h3 id="release_status">release_status</h3>
