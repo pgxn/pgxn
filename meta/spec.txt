@@ -67,8 +67,8 @@ specification, also known as the "PGXN Meta Spec." It is written using the
 [Disount](http://www.pell.portland.or.us/~orc/Code/discount/) variant of
 [Markdown](http://daringfireball.net/projects/markdown/), and the canonical
 copy may always be found at
-[pgxn.org/meta/spec.txt](http://pgxn.org/meta/spec.txt]. A generated HTML
-version found at [pgxn.org/meta/spec.html](http://pgxn.org/meta/spec.html] may
+[pgxn.org/meta/spec.txt](http://pgxn.org/meta/spec.txt). A generated HTML
+version found at [pgxn.org/meta/spec.html](http://pgxn.org/meta/spec.html) may
 also be considered canonical.
 
 This document is in development, and may change before version 1.0.0. At that
