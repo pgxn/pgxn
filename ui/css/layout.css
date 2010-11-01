@@ -129,13 +129,13 @@
   margin: 0;
   padding: 0;
   float: left;
-  border-top: 5px solid transparent;
+  padding-top: 5px;
 }
 
 #mainMenu li a {
   padding: 5px 0.5em;
 
-  font: 400 1.6em "trebuchet ms", serif;
+  font: 400 1.3em "trebuchet ms", serif;
   text-decoration: none;
   text-transform: lowercase;
   color: #FFF;
@@ -297,7 +297,7 @@ ul.sideMenu {
 
 .sideMenu li.here ul li a {
   padding-left: 35px;
-  font: 400 0.55em verdana, arial, sans-serif; 
+  font: 400 0.55em "trebuchet ms", serif;
   color: #FFF;  
   background: url(../img/bullet.gif) no-repeat 10px 0px;
 }

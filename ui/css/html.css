@@ -15,7 +15,7 @@ body {
   padding: 0;
   text-align: center;
 
-  font: 400 0.8em verdana, arial, sans-serif;
+  font: 400 0.9em "trebuchet ms", serif;
   line-height: 170%;
 
   background: #666 url(../img/header.png) repeat-x top left;
@@ -24,12 +24,12 @@ body {
 
 h1 {   
   clear: both;
-  font: 700 2.5em "trebuchet ms", serif;
+  font: 700 2.1em "trebuchet ms", serif;
   color: #FFF;
 }
 
 h2 {
-  font: 400 1.5em "trebuchet ms", serif;
+  font: 400 1.4em "trebuchet ms", serif;
   color: #9FF3FF;
 }
 
@@ -42,22 +42,22 @@ h2 a:hover {
 }
 
 h3 {
-  font: 400 1.3em "trebuchet ms", serif;
+  font: 400 1.2em "trebuchet ms", serif;
   color: #F8D766;
 }
 
 h4 {
-  font: 700 1.2em "trebuchet ms", serif;
+  font: 700 1.05em "trebuchet ms", serif;
   color: #F39F01;
 }
 
 h5 {
-  font: 700 1.1em "trebuchet ms", serif;
+  font: 700 1em "trebuchet ms", serif;
   color: #F17400;
 }
 
 h6 {
-  font: 700 1em "trebuchet ms", serif;
+  font: 700 0.9em "trebuchet ms", serif;
   color: #FF4B33;
 }
 
@@ -171,7 +171,7 @@ input,
 textarea,
 select {
   padding: 2px;
-  font: 400 1em verdana, sans-serif;
+  font: 400 1em "trebuchet ms", serif;
   color: #444;
   background: #EEE;
   border: 1px solid #444;
