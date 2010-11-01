@@ -12,7 +12,7 @@
              to convert to a fixed width site.
  **************************************************************/
 
-#content {  
+#content {
   height: 100%;
   min-height: 100%;
   text-align: left;
@@ -115,6 +115,7 @@
   float: left;
   width: 100%;
   clear: both;
+  height:50px;
 }
 
 #mainMenu ul {
@@ -132,7 +133,6 @@
 }
 
 #mainMenu li a {
-  margin: 0 2px;
   padding: 5px 0.5em;
 
   font: 400 1.6em "trebuchet ms", serif;
