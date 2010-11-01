@@ -77,6 +77,10 @@
   color: #00F0EC;
 }
 
+#header a img,
+#header a img:hover {
+  border: 0 !important;
+}
 
 /* Sets where the header images will go */
 #header img.left {
@@ -95,15 +99,13 @@
   right: 0;
 }
 
-#header img.balloons {
+#header img.gear {
   position: absolute;
   z-index: 2;
 
-  top: 70px;
-  right: 400px;
+  top: 0;
+  left: -32px;
 }
-
-
 
 /**************************************************************
    #mainMenu: The top level site menu
