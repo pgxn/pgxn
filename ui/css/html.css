@@ -255,3 +255,7 @@ a:hover img {
   border: 2px solid #FFF !important;
   border: 2px solid #8BE6FA;
 }
+
+table {
+  width: 100%;
+}

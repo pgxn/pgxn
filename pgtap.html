@@ -12,7 +12,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-AU">
   <head>
-    <title>pgTAP - Unit testing for PostgreSQL</title>
+    <title>pgTAP: Unit testing for PostgreSQL / PostgreSQL Extension Network</title>
     <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
     <meta name="author" content="David E. Wheeler" />
     <meta name="keywords" content="TAP, unit testing, PostgreSQL" />
@@ -41,7 +41,7 @@
         <ul id="crumb" class="floatLeft">
           <!-- XXX Would be nice to get a > or something between these. -->
           <li><a href="#" title="Theory">Theory</a></li>
-          <li class="sub"><a href="pgtap.html" title="pgTAP">pgTAP</a></li>
+          <li class="sub"><a href="pgtapdist.html" title="pgTAP">pgTAP</a></li>
           <li class="sub here"><a href="pgtap.html" title="pgTAP" class="here">pgTAP</a></li>
         </ul>
         <ul class="floatRight">
@@ -61,9 +61,10 @@
         <div class="width25 floatLeft leftColumn">
 
           <div id="toc">
-            <h3>Table of Contents</h3>
+            <h3>Contents</h3>
             <ul class="docNav">
               <li><a href="pgTAP+0.25.0">pgTAP 0.25.0</a></li>
+              <li><a href="#Synopsis">Synopsis</a><ul>
               <li><a href="#Installation">Installation</a><ul>
                   <li><a href="#Testing+pgTAP+with+pgTAP">Testing pgTAP with pgTAP</a></li>
                   <li><a href="#Adding+pgTAP+to+a+Database">Adding pgTAP to a Database</a></li></ul></li>
@@ -273,6 +274,45 @@
               PL/SQL. It includes a comprehensive collection of TAP-emitting assertion
               functions, as well as the ability to integrate with other TAP-emitting test
               frameworks. It can also be used in the xUnit testing style.</p>
+          </div>
+          <div class="gradient">
+            <h1 id="Synopsis">Synopsis</h1>
+            <pre><code>SELECT plan( 23 );
+-- or SELECT * from no_plan();
+
+-- Various ways to say "ok"
+SELECT ok( :have = :want, :test_description );
+
+SELECT is(   :have, :want, $test_description );
+SELECT isnt( :have, :want, $test_description );
+
+-- Rather than \echo # here's what went wrong
+SELECT diag( 'here''s what went wrong' );
+
+-- Compare values with LIKE or regular expressions.
+SELECT alike(   :have, :like_expression, $test_description );
+SELECT unalike( :have, :like_expression, $test_description );
+
+SELECT matches(      :have, :regex, $test_description );
+SELECT doesnt_match( :have, :regex, $test_description );
+
+SELECT cmp_ok(:have, '=', :want, $test_description );
+
+-- Skip tests based on runtime conditions.
+SELECT CASE WHEN :some_feature THEN collect_tap(
+    ok( foo(),       :test_description),
+    is( foo(42), 23, :test_description)
+) ELSE skip(:why, :how_many ) END;
+
+-- Mark some tests as to-do tests.
+SELECT todo(:why, :how_many);
+SELECT ok( foo(),       :test_description);
+SELECT is( foo(42), 23, :test_description);
+
+-- Simple pass/fail.
+SELECT pass(:test_description);
+SELECT fail(:test_description);
+</code></pre>
           </div>
           <div class="gradient">
 <h1 id="Installation">Installation</h1>
