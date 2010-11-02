@@ -447,6 +447,17 @@ ul.sideMenu {
 }
 
 
+/**************************************************************
+   Distribution display
+ **************************************************************/
 
+#meta dt {
+  float:left;
+}
 
-
+#meta dt:after {
+  content: ":";
+}
+#meta dd {
+  margin-left: 5em;
+}

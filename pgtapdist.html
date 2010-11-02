@@ -30,8 +30,8 @@
         <h1>PGXN</h1>
         <h2>PostgreSQL Extension Network</h2>
       </div>
-      <a href="/"><img src="ui/img/gear.png" alt="PGXN Gear" class="gear" /></a>
-      <a href="/"><img src="ui/img/pgxn.png" alt="PostgreSQL Extension Network" class="right" /></a>
+      <a href="/" rel="home"><img src="ui/img/gear.png" alt="PGXN Gear" class="gear" /></a>
+      <a href="/" rel="home"><img src="ui/img/pgxn.png" alt="PostgreSQL Extension Network" class="right" /></a>
     </div>
 
     <!-- CONTENT: Holds all site content except for the footer.  This is what causes the footer to stick to the bottom -->
@@ -53,8 +53,8 @@
       </div>
 
       <!-- PAGE CONTENT BEGINS: This is where you would define the columns (number, width and alignment) -->
-      <div id="page">
-        <div class="width100 gradient">
+      <div id="page" class="dist">
+        <div class="gradient" id="meta">
           <h1>pgTAP 0.25.0</h1>
         <dl>
           <dt>This Release</dt>
@@ -69,7 +69,7 @@
           <dt>Repository</dt>
           <dd><a href="http://github.com/theory/pgtap/">http://github.com/theory/pgtap/</a></dd>
           <dt>License</dt>
-          <dd><a href="http://www.opensource.org/licenses/postgresql">PostgreSQL</a></dd>
+          <dd><a href="http://www.opensource.org/licenses/postgresql" rel="license">PostgreSQL</a></dd>
           <dt>Special Files</dt>
           <dd>
             <ul>
@@ -81,25 +81,29 @@
           </dd>
         </dl>
         </div>
+
+        <div class="gradient exts">
+          <h3>Extensions</h3>
+          <dl>
+            <dt><a href="pgtap.html" class="url">
+                <span class="fn">pgTAP</span>
+                <span class="version">0.25.0</span>
+            </a></dt>
+            <dd class="abstract">Unit testing for PostgreSQL</dd>
+          </dl>
+        </div>
+
+        <div class="gradient docs">
+          <h3>Documentation</h3>
+          <dl>
+            <dt><a href="pgtap.html" class="url">
+                <span class="fn">pgtap</span>
+            </a></dt>
+            <dd class="abstract">Unit testing for PostgreSQL</dd>
+          </dl>
+        </div>
+
       </div>
-
-      <table class="exts">
-        <caption>Extensions</caption>
-        <tr>
-          <td><a href="pgtap.html">pgTAP</a></td>
-          <td>Unit testing for PostgreSQL</td>
-          <td>0.25.0</td>
-        </tr>
-      </table>
-
-      <table class="docs">
-        <caption>Documentation</caption>
-        <tr>
-          <td><a href="pgtap.html">pgtap</a></td>
-          <td>Unit testing for PostgreSQL</td>
-        </tr>
-      </table>
-
     </div>
 
 
