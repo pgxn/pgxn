@@ -197,6 +197,14 @@ ul.docNav {
     border:0 !important;
 }
 
+.hside {
+  margin-left:20px;
+  width:245px;
+}
+
+.hsearch {
+  width:650px;
+}
 
 /**************************************************************
    #homesearch: The home page search form.
@@ -313,7 +321,8 @@ ul.sideMenu {
    #page: Holds the main page content.
  **************************************************************/
 
-#page {
+#page,
+#homepage {
   float: left;
   width: 100%;
   clear: both;
@@ -321,8 +330,9 @@ ul.sideMenu {
   padding-bottom: 4em;
 }
 
-
-
+#homepage {
+  width:915px;
+}
 
 /**************************************************************
    #footer: The page footer - will stick to the bottom if not
@@ -371,7 +381,6 @@ ul.sideMenu {
 .width25 {
   width: 24.7%;
 }
-
 
 
 /**************************************************************
