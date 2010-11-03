@@ -12,7 +12,7 @@
              to convert to a fixed width site.
  **************************************************************/
 
-#content {
+#all {
   height: 100%;
   min-height: 100%;
   text-align: left;
@@ -348,7 +348,7 @@ ul.sideMenu {
   width: 100%;
   clear: both;
   
-  margin-top: -3.8em;
+  margin-top: -3.5em;
   background: #000 url(../img/footer.jpg) repeat-x top left;
 }
 
