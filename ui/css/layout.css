@@ -204,6 +204,11 @@ ul.docNav {
 
 .hsearch {
   width:650px;
+  background: #555 url(../img/gradient.jpg) repeat-x top left;
+}
+
+#cloud {
+  padding:10px 15px;
 }
 
 /**************************************************************
@@ -211,8 +216,7 @@ ul.docNav {
  **************************************************************/
 
 #homesearch {
-  padding:50px 0 370px;
-  background: #555 url(../img/gradient.jpg) repeat-x top left; 
+  padding:50px 0;
 }
 
 #homesearch fieldset {
@@ -451,13 +455,14 @@ ul.sideMenu {
    Distribution display
  **************************************************************/
 
-#meta dt {
+.dist .meta dt {
   float:left;
 }
 
-#meta dt:after {
+.dist .meta dt:after {
   content: ":";
 }
-#meta dd {
+
+.dist .meta dd {
   margin-left: 5em;
 }
