@@ -40,9 +40,8 @@
       <!-- MAIN MENU: Top horizontal menu of the site.  Use class="here" to turn the current page tab on -->
       <div id="mainMenu">
         <ul id="crumb" class="floatLeft">
-          <!-- XXX Would be nice to get a > or something between these. -->
           <li><a href="#" title="Theory">Theory</a></li>
-          <li class="sub"><a href="pgtapdist.html" title="pgTAP">pgTAP</a></li>
+          <li class="sub here"><a href="pgtapdist.html" title="pgTAP">pgTAP</a></li>
         </ul>
         <ul class="floatRight">
           <li><a href="#" title="About PGXN">About</a></li>
@@ -56,13 +55,10 @@
       <!-- PAGE CONTENT BEGINS: This is where you would define the columns (number, width and alignment) -->
       <div id="page" class="dist">
         <div class="gradient meta">
-          <h1>
-            <span class="fn">pgTAP</span>
-            <span class="version">0.25.0</span>
-          </h1>
+          <h1>pgTAP</h1>
           <dl>
             <dt>This Release</dt>
-            <dd>pgTAP 0.25.0</dd>
+            <dd><span class="fn">pgTAP</span> <span class="version">0.25.0</span></dd>
             <dt>Other Releases</dt>
             <dd><form name="rel" method="get" action="#"><select>
                   <option>pgTAP 0.24.0 — 2010-05-24</option>
@@ -70,100 +66,81 @@
                   <option>pgTAP 0.22.0 — 2009-12-18</option>
                   <option>pgTAP 0.21.0 — 2009-07-31</option>
             </select></form></dd>
-            <dt>Repository</dt>
-            <dd><a href="http://github.com/theory/pgtap/">http://github.com/theory/pgtap/</a></dd>
+            <dt>Abstract</dt>
+            <dd class="abstract">Unit testing for PostgreSQL</dd>
+            <dt>Description</dt>
+            <dd class="description">pgTAP is a suite of database functions that make it easy to write TAP-emitting unit tests in psql scripts or xUnit-style test functions.</dd>
+            <dt>Maintainers</dt>
+            <dd><span class="maintainer">
+                <span class="vcard">
+                  <a class="url fn" href="http://www.justatheory.com">David Wheeler</a>
+                </span> and
+                <span class="vcard">
+                  <a class="url fn" href="http://www.justatheory.com">David Wheeler</a>
+                </span>
+              </span>
+            </dd>
             <dt>License</dt>
             <dd><a href="http://www.opensource.org/licenses/postgresql" rel="license">PostgreSQL</a></dd>
+
+            <dt>Resources</dt>
+            <dd class="resources">
+              <ul>
+                <li><a class="url" href="http://pgxn.org/">www</a></li>
+                <li><a class="url" href="http://pgxn.org/">git</a></li>
+                <li><a class="url" href="http://pgxn.org/">bugs</a></li>
+                <li class="last"><a class="email" href="mailto:bugs@pgxn.org">bugs@pgxn.org</a></li>
+                </ul>
+            </dd>
+
             <dt>Special Files</dt>
-            <dd>
+            <dd class="files">
               <ul>
                 <li><a href="#">Makefile</a></li>
                 <li><a href="#">Changes</a></li>
                 <li><a href="#">README</a></li>
-                <li><a href="#">META.json</a></li>
+                <li class="last"><a href="#">META.json</a></li>
+              </ul>
+            </dd>
+
+            <dt>Tags</dt>
+            <dd class="tags">
+              <ul>
+                <li><a href="#">testing</a></li>
+                <li><a href="#">unit testing</a></li>
+                <li><a href="#">tap</a></li>
+                <li><a href="#">tddd</a></li>
+                <li class="last"><a href="#">test driven database development</a></li>
               </ul>
             </dd>
           </dl>
         </div>
 
-<!--
-    {
-       "name": "pgTAP",
-       "abstract": "Unit testing for PostgreSQL",
-       "description": "pgTAP is a suite of database functions that make it easy to write TAP-emitting unit tests in psql scripts or xUnit-style test functions.",
-       "version": "0.2.5",
-       "maintainer": [
-          "David E. Wheeler <theory@pgxn.org>",
-          "pgTAP List <pgtap-users@pgfoundry.org>"
-       ],
-       "license": {
-          "PostgreSQL": "http://www.postgresql.org/about/licence"
-       },
-       "prereqs": {
-          "runtime": {
-             "requires": {
-                "plpgsql": 0,
-                "PostgreSQL": "8.0.0"
-             },
-             "recommends": {
-                "PostgreSQL": "8.4.0"
-             }
-          }
-       },
-       "provides": {
-         "pgtap": {
-           "file": "sql/pgtap.sql",
-           "version": "0.2.4"
-         },
-         "schematap": {
-           "file": "sql/schematap.sql",
-           "version": "0.2.4"
-         }
-       },
-       "resources": {
-          "homepage": "http://pgtap.org/",
-          "bugtracker": {
-             "web": "http://github.com/theory/pgtap/issues"
-          },
-          "repository": {
-            "url":  "git://github.com/theory/pgtap.git",
-            "web":  "http://github.com/theory/pgtap",
-            "type": "git"
-          }
-       },
-       "generated_by": "David E. Wheeler",
-       "meta-spec": {
-          "version": "1.0.0",
-          "url": "http://pgxn.org/meta/spec.txt"
-       },
-       "tags": [
-          "testing",
-          "unit testing",
-          "tap",
-          "tddd",
-          "test driven database development"
-       ]
-    }
--->
         <div class="gradient exts">
           <h3>Extensions</h3>
           <dl>
-            <dt><a href="pgtap.html" class="url">
+            <dt class="ext"><a href="pgtap.html" class="url">
                 <span class="fn">pgTAP</span>
                 <span class="version">0.25.0</span>
             </a></dt>
             <dd class="abstract">Unit testing for PostgreSQL</dd>
+            <dt class="doc">
+                <span class="fn">schematap</span>
+                <span class="version">0.2.4</span>
+            </dt>
+            <dd class="abstract">Schema testing for PostgreSQL</dd>
           </dl>
         </div>
 
         <div class="gradient docs">
           <h3>Documentation</h3>
           <dl>
-            <dt><a href="pgtap.html" class="url">
+            <dt class="doc"><a href="pgtap.html" class="url">
                 <span class="fn">pgtap</span>
             </a></dt>
             <dd class="abstract">Unit testing for PostgreSQL</dd>
           </dl>
+          <dl>
         </div>
 
       </div>

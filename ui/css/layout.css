@@ -456,7 +456,9 @@ ul.sideMenu {
  **************************************************************/
 
 .dist .meta dt {
-  float:left;
+   text-align:right;
+   width: 8em;
+   float:left;
 }
 
 .dist .meta dt:after {
@@ -464,5 +466,33 @@ ul.sideMenu {
 }
 
 .dist .meta dd {
-  margin-left: 5em;
+ margin-left: 5.5em;
+}
+
+.dist .meta dd ul {
+  margin:0;
+}
+
+.dist .meta .resources ul, .dist .meta .resources li,
+.dist .meta .files ul,     .dist .meta .files li,
+.dist .meta .tags ul,      .dist .meta .tags li
+{
+  display:inline;
+  padding-left:0;
+}
+
+.dist .meta .resources li:after,
+.dist .meta .files     li:after,
+.dist .meta .tags      li:after
+{
+   content:" ✦";
+}
+.dist .meta .resources li.last:after,
+.dist .meta .files     li.last:after,
+.dist .meta .tags      li.last:after {
+   content:"";
+}
+
+.dist .exts dt {
+   color:white;
 }
