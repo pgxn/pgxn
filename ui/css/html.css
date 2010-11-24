@@ -67,6 +67,11 @@ h1, h2, h3, h4, h5, h6, p, dl {
   padding: 10px 15px;
 }
 
+table {
+  border-collapse:collapse;
+  margin: 10px 15px;
+}
+
 /* Done so the leftmost column aligns properly with the header.
    If the leftmost column has class gradient applied to it, 
    this class isn't required. */
@@ -254,8 +259,4 @@ a:hover img {
   /* Fixes IE bug - IE doesn't correctly apply the style on a:hover so need to mask it */
   border: 2px solid #FFF !important;
   border: 2px solid #8BE6FA;
-}
-
-table {
-  width: 100%;
 }
