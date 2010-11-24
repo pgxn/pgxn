@@ -242,8 +242,7 @@ ul.docNav {
 }
 
 .res:hover {
-  /* background:#657080; */
-  background-color:#907050;
+  background:#444;
 }
  
 .res p, .res h2 {
@@ -521,8 +520,16 @@ table tr:hover {
 tr:nth-of-type(odd) {
   background: #444;
 }
+tr:nth-of-type(even) {
+  background: #555;
+}
 table .dist .name, table .dist .bday {
   white-space:nowrap;
+}
+table .dist .name a {
+  display:block;
+  padding-left: 30px;
+  background: url(../img/favicon.png) no-repeat 4px 3px;
 }
 
 .dist .meta .download a {
