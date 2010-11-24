@@ -515,11 +515,11 @@ table tr a img {
  vertical-align:top;
 }
 table tr:hover {
-  background:#202020;
+  background:#222;
 }
 
 tr:nth-of-type(odd) {
-  background:#505050;
+  background: #444;
 }
 table .dist .name, table .dist .bday {
   white-space:nowrap;
