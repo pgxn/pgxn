@@ -185,7 +185,7 @@ ul.docNav {
 /**************************************************************
    #founder: Logos of founding sponsors.
  **************************************************************/
-#founders a {
+#founders a, #patrons a {
     padding-left:15px;
 }
 
@@ -195,7 +195,13 @@ ul.docNav {
     height:40px;
 }
 
-#founders a:hover img {
+#patrons img {
+    border:0;
+    width:32px;
+    height:32px;
+}
+
+#founders a:hover img, #patrons a:hover img {
     border:0 !important;
 }
 
