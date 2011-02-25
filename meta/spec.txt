@@ -6,7 +6,7 @@ PGXN Meta Spec - The PGXN distribution metadata specification
 Version
 =======
 
-1.0.0dev3
+1.0.0dev4
 
 Synopsis
 ========
@@ -37,11 +37,13 @@ Synopsis
        "provides": {
          "pgtap": {
            "file": "sql/pgtap.sql",
-           "version": "0.2.4"
+           "version": "0.2.4",
+           "abstract": "Unit testing assertions for PostgreSQL"
          },
          "schematap": {
            "file": "sql/schematap.sql",
-           "version": "0.2.4"
+           "version": "0.2.4",
+           "abstract": "Schema testing assertions for PostgreSQL"
          }
        },
        "resources": {
@@ -226,7 +228,7 @@ Required Fields
 
 Example:
 
-    "abstract": 'Unit testing for PostgreSQL"
+    "abstract": "Unit testing for PostgreSQL"
 
 (Spec 1) [required] {[String](#String)}
 
@@ -494,10 +496,12 @@ Example:
     "provides": {
       "pgtap": {
         "file": "sql/pgtap.sql",
-        "version": "0.2.4"
+        "version": "0.2.4",
+        "abstract": "Unit testing assertions for PostgreSQL"
       },
       "schematap": {
-        "file": "sql/schematap.sql"
+        "file": "sql/schematap.sql",
+        "abstract": "Schema testing assertions for PostgreSQL"
       }
     }
 
@@ -508,16 +512,20 @@ is used by PGXN to build indexes identifying in which distributions various
 extensions can be found.
 
 The keys of `provides` are extension names that can be found within the
-distribution. The values are [Maps](#Map) with the following required subkeys:
+distribution. The values are [Maps](#Map) with the following subkeys, of which
+only `abstract` is optional:
 
 =file=
     The value must contain a relative file path from the root of the
-    distribution to the file containing the extension. The path <strong>must
-    be</strong> specified with unix conventions.
+    distribution to the file containing the extension. The path **must
+    be** specified with unix conventions.
 
 =version=
     This field contains a [Version](#Version) for the extension. All
     extensions must have versions.
+
+=abstract=
+    A short [String](#String) value describing the extension.
 
 ### release_status ###
 
@@ -591,7 +599,7 @@ Valid subkeys include:
 
 =repository=
     This entry describes the source control repository for this distribution.
-    It is a <a href="#Map">Map</a> with the following valid keys:
+    It is a [Map](#Map) with the following valid keys:
 
     =url=
         a [URI](#URI) pointing to the repository itself
@@ -638,8 +646,8 @@ extensions. The prereq spec structure is a hierarchical data structure which
 divides prerequisites into *Phases* of activity in the installation process
 and *Relationships* that indicate how prerequisites should be resolved.
 
-For example, to specify that `pgTAP` is `required` during the `test` phase,
-this entry would appear in the distribution metadata:
+For example, to specify that `pgTAP` is required during the `test` phase, this
+entry would appear in the distribution metadata:
 
     "prereqs": {
       "test": {
@@ -704,9 +712,8 @@ phases.
 ### Relationships ###
 
 =requires=
-    These dependencies <strong>must</strong> be installed for proper
-    completion of the phase.
-
+    These dependencies **must** be installed for proper completion of the
+    phase.
 
 =recommends=
     Recommended dependencies are *strongly* encouraged and should be satisfied

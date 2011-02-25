@@ -25,15 +25,18 @@
       <div id="main">
         <div class="article">
           <!-- `markdown -F 0x1000 meta/spec.txt | pbcopy` and paste here -->
-<h1 id="Name">Name</h1>
+<a name="Name"></a>
+<h1>Name</h1>
 
 <p>PGXN Meta Spec &ndash; The PGXN distribution metadata specification</p>
 
-<h1 id="Version">Version</h1>
+<a name="Version"></a>
+<h1>Version</h1>
 
-<p>1.0.0dev3</p>
+<p>1.0.0dev4</p>
 
-<h1 id="Synopsis">Synopsis</h1>
+<a name="Synopsis"></a>
+<h1>Synopsis</h1>
 
 <pre><code>{
    "name": "pgTAP",
@@ -61,11 +64,13 @@
    "provides": {
      "pgtap": {
        "file": "sql/pgtap.sql",
-       "version": "0.2.4"
+       "version": "0.2.4",
+       "abstract": "Unit testing assertions for PostgreSQL"
      },
      "schematap": {
        "file": "sql/schematap.sql",
-       "version": "0.2.4"
+       "version": "0.2.4",
+       "abstract": "Schema testing assertions for PostgreSQL"
      }
    },
    "resources": {
@@ -94,7 +99,8 @@
 }
 </code></pre>
 
-<h1 id="Description">Description</h1>
+<a name="Description"></a>
+<h1>Description</h1>
 
 <p>This document describes version 1.0.0dev3 of the PGXN distribution metadata
 specification, also known as the &ldquo;PGXN Meta Spec.&rdquo; It is written using the
@@ -116,7 +122,8 @@ Distribution building tools should create a metadata file in accordance
 with this specification and include it with the distribution for use by
 automated tools that index, examine, package, or install PGXN distributions.</p>
 
-<h1 id="Terminology">Terminology</h1>
+<a name="Terminology"></a>
+<h1>Terminology</h1>
 
 <dl>
 <dt>distribution</dt>
@@ -145,7 +152,8 @@ bytestream and/or writes it to disk.</dd>
 2119</a>.</dd>
 </dl>
 
-<h1 id="Data.Types">Data Types</h1>
+<a name="Data.Types"></a>
+<h1>Data Types</h1>
 
 <p>Fields in the <a href="#Structure">Structure</a> section describe data elements, each of
 which has an associated data type as described herein. There are four
@@ -153,17 +161,20 @@ primitive types: <em>Boolean</em>, <em>String</em>, <em>List</em>, and <em>Map</
 subtypes of primitives and define compound data structures or define
 constraints on the values of a data element.</p>
 
-<h2 id="Boolean">Boolean</h2>
+<a name="Boolean"></a>
+<h2>Boolean</h2>
 
 <p>A <em>Boolean</em> is used to provide a true or false value. It <strong>must</strong> be
 represented as a defined (not <code>null</code>) value.</p>
 
-<h2 id="String">String</h2>
+<a name="String"></a>
+<h2>String</h2>
 
 <p>A <em>String</em> is data element containing a non-zero length sequence of Unicode
 characters.</p>
 
-<h2 id="List">List</h2>
+<a name="List"></a>
+<h2>List</h2>
 
 <p>A <em>List</em> is an ordered collection of zero or more data elements. Elements of a
 List may be of mixed types.</p>
@@ -175,31 +186,36 @@ JavaScript array.</p>
 <p>Consumers expecting a List <strong>must</strong> consider a <a href="#String">String</a> as equivalent
 to a List of length 1.</p>
 
-<h2 id="Map">Map</h2>
+<a name="Map"></a>
+<h2>Map</h2>
 
 <p>A <em>Map</em> is an unordered collection of zero or more data elements (&ldquo;values&rdquo;),
 indexed by associated <a href="#String">String</a> elements (&ldquo;keys&rdquo;). The Map&rsquo;s value
 elements may be of mixed types.</p>
 
-<h2 id="License.String">License String</h2>
+<a name="License.String"></a>
+<h2>License String</h2>
 
 <p>A <em>License String</em> is a subtype of <a href="#String">String</a> with a restricted set of
 values. Valid values are described in detail in the description of the
 <a href="#license">license field</a>.</p>
 
-<h2 id="URI">URI</h2>
+<a name="URI"></a>
+<h2>URI</h2>
 
 <p><em>URI</em> is a subtype of <a href="#String">String</a> containing a Uniform Resource
 Identifier or Locator.</p>
 
-<h2 id="Version">Version</h2>
+<a name="Version"></a>
+<h2>Version</h2>
 
 <p>A <em>Version</em> is a subtype of <a href="#String">String</a> containing a value that
 describes the version number of extensions or distributions. Restrictions on
 format are described in detail in the <a href="#Version.Format">Version Format</a>
 section.</p>
 
-<h1 id="Structure">Structure</h1>
+<a name="Structure"></a>
+<h1>Structure</h1>
 
 <p>The metadata structure is a data element of type <a href="#Map">Map</a>. This section
 describes valid keys within the <a href="#Map">Map</a>.</p>
@@ -232,20 +248,23 @@ and must not be produced in or consumed from any metadata structure of version
 -->
 
 
-<h2 id="Required.Fields">Required Fields</h2>
+<a name="Required.Fields"></a>
+<h2>Required Fields</h2>
 
-<h3 id="abstract">abstract</h3>
+<a name="abstract"></a>
+<h3>abstract</h3>
 
 <p>Example:</p>
 
-<pre><code>"abstract": 'Unit testing for PostgreSQL"
+<pre><code>"abstract": "Unit testing for PostgreSQL"
 </code></pre>
 
 <p>(Spec 1) [required] {<a href="#String">String</a>}</p>
 
 <p>This is a short description of the purpose of the distribution.</p>
 
-<h3 id="maintainer">maintainer</h3>
+<a name="maintainer"></a>
+<h3>maintainer</h3>
 
 <p>Examples:</p>
 
@@ -276,7 +295,8 @@ field. Co-maintainers, successor maintainers or mailing lists devoted to the
 distribution may also be listed in addition to or instead of the original
 author.</p>
 
-<h3 id="license">license</h3>
+<a name="license"></a>
+<h3>license</h3>
 
 <p>Examples:</p>
 
@@ -450,7 +470,8 @@ other licensing not described above:</p>
 
 <p>All other strings are invalid in the license <a href="#List">List</a>.</p>
 
-<h3 id="meta-spec">meta-spec</h3>
+<a name="meta-spec"></a>
+<h3>meta-spec</h3>
 
 <p>Example:</p>
 
@@ -479,7 +500,8 @@ to the given version. This is strictly for human-consumption and should
 not impact the interpretation of the document.</dd>
 </dl>
 
-<h3 id="name">name</h3>
+<a name="name"></a>
+<h3>name</h3>
 
 <p>Example:</p>
 
@@ -493,7 +515,8 @@ name of the &ldquo;main extension&rdquo; in the distribution, but may be complet
 unrelated to the extensions within the distribution. This string should have
 no spaces in it, and will be used for the distribution file name on PGXN.</p>
 
-<h3 id="version">version</h3>
+<a name="version"></a>
+<h3>version</h3>
 
 <p>Example:</p>
 
@@ -505,9 +528,11 @@ no spaces in it, and will be used for the distribution file name on PGXN.</p>
 <p>This field gives the version of the distribution to which the metadata
 structure refers. Its value must be a <a href="#Version">Version</a>.</p>
 
-<h2 id="Optional.Fields">Optional Fields</h2>
+<a name="Optional.Fields"></a>
+<h2>Optional Fields</h2>
 
-<h3 id="description">description</h3>
+<a name="description"></a>
+<h3>description</h3>
 
 <p>Example:</p>
 
@@ -519,7 +544,8 @@ structure refers. Its value must be a <a href="#Version">Version</a>.</p>
 <p>A longer, more complete description of the purpose or intended use of the
 distribution than the one provided by the <code>abstract</code> key.</p>
 
-<h3 id="generated_by">generated_by</h3>
+<a name="generated_by"></a>
+<h3>generated_by</h3>
 
 <p>Example:</p>
 
@@ -533,7 +559,8 @@ no defined semantics for this field, but it is traditional to use a string in
 the form &ldquo;Software package version 1.23&rdquo; or the maintainer&rsquo;s name, if the file
 was generated by hand.</p>
 
-<h3 id="tags">tags</h3>
+<a name="tags"></a>
+<h3>tags</h3>
 
 <p>Example:</p>
 
@@ -544,7 +571,8 @@ was generated by hand.</p>
 
 <p>A <a href="#List">List</a> of keywords that describe this distribution.</p>
 
-<h3 id="no_index">no_index</h3>
+<a name="no_index"></a>
+<h3>no_index</h3>
 
 <p>Example:</p>
 
@@ -574,7 +602,8 @@ with unix conventions.
 specified with unix conventions.</dd>
 </dl>
 
-<h3 id="prereqs">prereqs</h3>
+<a name="prereqs"></a>
+<h3>prereqs</h3>
 
 <p>Example:</p>
 
@@ -617,17 +646,20 @@ and the values provide sets of prerequisite relations. The sets of relations
 <p>The full definition for this field is given in the <a href="#Prereq.Spec">Prereq Spec</a>
 section.</p>
 
-<h3 id="provides">provides</h3>
+<a name="provides"></a>
+<h3>provides</h3>
 
 <p>Example:</p>
 
 <pre><code>"provides": {
   "pgtap": {
     "file": "sql/pgtap.sql",
-    "version": "0.2.4"
+    "version": "0.2.4",
+    "abstract": "Unit testing assertions for PostgreSQL"
   },
   "schematap": {
-    "file": "sql/schematap.sql"
+    "file": "sql/schematap.sql",
+    "abstract": "Schema testing assertions for PostgreSQL"
   }
 }
 </code></pre>
@@ -639,7 +671,8 @@ is used by PGXN to build indexes identifying in which distributions various
 extensions can be found.</p>
 
 <p>The keys of <code>provides</code> are extension names that can be found within the
-distribution. The values are <a href="#Map">Maps</a> with the following required subkeys:</p>
+distribution. The values are <a href="#Map">Maps</a> with the following subkeys, of which
+only <code>abstract</code> is optional:</p>
 
 <dl>
 <dt>file</dt>
@@ -649,9 +682,12 @@ be</strong> specified with unix conventions.</dd>
 <dt>version</dt>
 <dd>This field contains a <a href="#Version">Version</a> for the extension. All
 extensions must have versions.</dd>
+<dt>abstract</dt>
+<dd>A short <a href="#String">String</a> value describing the extension.</dd>
 </dl>
 
-<h3 id="release_status">release_status</h3>
+<a name="release_status"></a>
+<h3>release_status</h3>
 
 <p>Example:</p>
 
@@ -684,7 +720,8 @@ user.</dd>
 for PGXN or other repositories. If this field is not present, consumers
 <strong>may</strong> assume that the distribution status is &ldquo;stable.&rdquo;</p>
 
-<h3 id="resources">resources</h3>
+<a name="resources"></a>
+<h3>resources</h3>
 
 <p>Example:</p>
 
@@ -742,9 +779,11 @@ producers should provide a <code>type</code> whenever a <code>url</code> key is 
 with the repository, e.g. git, svn, cvs, darcs, bzr or hg.</p></dd>
 </dl>
 
-<h1 id="Version.Numbers">Version Numbers</h1>
+<a name="Version.Numbers"></a>
+<h1>Version Numbers</h1>
 
-<h2 id="Version.Format">Version Format</h2>
+<a name="Version.Format"></a>
+<h2>Version Format</h2>
 
 <p>This section defines the <a href="#Version">Version</a> type, used by several
 fields in the PGXN Meta Spec.</p>
@@ -760,17 +799,19 @@ following the patch version.</p>
 it is supported by PostgreSQL itself. Please see
 <a href="http://semver.org/">the specification</a> for all details on the format.</p>
 
-<h1 id="Prerequisites">Prerequisites</h1>
+<a name="Prerequisites"></a>
+<h1>Prerequisites</h1>
 
-<h2 id="Prereq.Spec">Prereq Spec</h2>
+<a name="Prereq.Spec"></a>
+<h2>Prereq Spec</h2>
 
 <p>The <code>prereqs</code> key defines the relationship between a distribution and other
 extensions. The prereq spec structure is a hierarchical data structure which
 divides prerequisites into <em>Phases</em> of activity in the installation process
 and <em>Relationships</em> that indicate how prerequisites should be resolved.</p>
 
-<p>For example, to specify that <code>pgTAP</code> is <code>required</code> during the <code>test</code> phase,
-this entry would appear in the distribution metadata:</p>
+<p>For example, to specify that <code>pgTAP</code> is required during the <code>test</code> phase, this
+entry would appear in the distribution metadata:</p>
 
 <pre><code>"prereqs": {
   "test": {
@@ -784,7 +825,8 @@ this entry would appear in the distribution metadata:</p>
 <p>Note that the <code>prereqs</code> key may not be used to specify prerequisites
 distributed outside PGXN or the PostgreSQL core and its contrib extensions.</p>
 
-<h3 id="Phases">Phases</h3>
+<a name="Phases"></a>
+<h3>Phases</h3>
 
 <p>Requirements for regular use must be listed in the <code>runtime</code> phase. Other
 requirements should be listed in the earliest stage in which they are required
@@ -861,12 +903,13 @@ perform other tasks related to developing new versions of the
 distribution.</dd>
 </dl>
 
-<h3 id="Relationships">Relationships</h3>
+<a name="Relationships"></a>
+<h3>Relationships</h3>
 
 <dl>
 <dt>requires</dt>
-<dd>These dependencies <strong>must</strong> be installed for proper
-completion of the phase.</dd>
+<dd>These dependencies <strong>must</strong> be installed for proper completion of the
+phase.</dd>
 <dt>recommends</dt>
 <dd>Recommended dependencies are <em>strongly</em> encouraged and should be satisfied
 except in resource constrained environments.</dd>
@@ -875,7 +918,8 @@ except in resource constrained environments.</dd>
 of the described distribution.</dd>
 </dl>
 
-<h2 id="Merging.and.Resolving.Prerequisites">Merging and Resolving Prerequisites</h2>
+<a name="Merging.and.Resolving.Prerequisites"></a>
+<h2>Merging and Resolving Prerequisites</h2>
 
 <p>Whenever metadata consumers merge prerequisites, they should be merged in a
 way that preserves the intended semantics of the prerequisite structure.</p>
@@ -927,14 +971,17 @@ specified &ldquo;functap&rdquo; as a prerequisite, it could result in
 installed module files being &ldquo;downgraded&rdquo; to an older version and <strong>may</strong> warn
 users or ignore the prerequisite that would cause such a result.</p>
 
-<h1 id="Serialization">Serialization</h1>
+<a name="Serialization"></a>
+<h1>Serialization</h1>
 
 <p>Distribution metadata should be serialized as JSON-encoded data and packaged
 with distributions as the file <code>META.json</code>.</p>
 
-<h1 id="Notes.For.Implementors">Notes For Implementors</h1>
+<a name="Notes.For.Implementors"></a>
+<h1>Notes For Implementors</h1>
 
-<h2 id="Comparing.Version.Numbers">Comparing Version Numbers</h2>
+<a name="Comparing.Version.Numbers"></a>
+<h2>Comparing Version Numbers</h2>
 
 <p>Following the <a href="http://semver.org/">Semantic Versioning Spec</a>, version numbers
 <strong>must</strong> be strictly compared by splitting the <a href="#Version">Version</a>
@@ -951,7 +998,8 @@ un-encumbered third integer of the same value. Some examples:</p>
 2.0.0beta   &lt; 2.0.0
 </code></pre>
 
-<h1 id="See.Also">See Also</h1>
+<a name="See.Also"></a>
+<h1>See Also</h1>
 
 <ul>
 <li><a href="http://search.cpan.org/perldoc?CPAN::Meta::Spec">CPAN Meta Spec</a></li>
@@ -961,7 +1009,8 @@ un-encumbered third integer of the same value. Some examples:</p>
 </ul>
 
 
-<h1 id="Contributors">Contributors</h1>
+<a name="Contributors"></a>
+<h1>Contributors</h1>
 
 <p>The PGXN Meta Spec borrows heavily from the <a href="http://search.cpan.org/perldoc?CPAN::Meta::Spec">CPAN Meta
 Spec</a>, which was originally
