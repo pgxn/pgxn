@@ -197,9 +197,17 @@ ul.docNav {
 
 #patrons img {
     border:0;
-    width:28px;
-    height:28px;
+    width:24px;
+    height:24px;
     vertical-align:text-bottom;
+}
+
+#patrons h3 {
+    padding-top:0;
+}
+
+#benefactors {
+    margin-top:0;
 }
 
 #founders a:hover img, #patrons a:hover img {
