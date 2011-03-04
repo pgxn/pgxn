@@ -186,19 +186,19 @@ ul.docNav {
    #founder: Logos of founding sponsors.
  **************************************************************/
 #founders a {
-    padding-left:15px;
+    padding-left:14px;
 }
 
 #founders img {
     border:0;
-    width:215px;
-    height:40px;
+    width:234px;
+    height:60px;
 }
 
 #patrons img {
     border:0;
-    width:24px;
-    height:24px;
+    width:32px;
+    height:32px;
     vertical-align:text-bottom;
 }
 
@@ -208,11 +208,11 @@ ul.docNav {
 
 .hside {
   margin-left:20px;
-  width:245px;
+  width:260px;
 }
 
 .hsearch {
-  width:650px;
+  width:635px;
   background: #555 url(../img/gradient.jpg) repeat-x top left;
 }
 
