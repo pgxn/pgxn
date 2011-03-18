@@ -471,6 +471,19 @@ ul.sideMenu {
    Distribution display
  **************************************************************/
 
+.dists {
+  padding:10px 15px;
+}
+
+.dists table {
+  width: 100%;
+  margin: 0;
+}
+
+.dists h3 {
+  padding-left:0;
+}
+
 .dist .meta .download {
   position: absolute;
   top:205px;
@@ -517,10 +530,6 @@ ul.sideMenu {
 
 .dist .exts dt {
    color:white;
-}
-
-.dists table {
-  width: 100%;
 }
 
 table td {
