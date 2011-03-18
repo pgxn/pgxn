@@ -519,6 +519,10 @@ ul.sideMenu {
    color:white;
 }
 
+.dists table {
+  width: 100%;
+}
+
 table td {
    padding: 5px;
 }
