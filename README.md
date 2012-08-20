@@ -11,17 +11,17 @@ consists of four parts:
 
 * [PGXN Manager](http://manager.pgxn.org/) is a web application via which
   users can upload packages for distribution on the network
-  ([source](https://github.com/theory/pgxn-manager)).
+  ([source](https://github.com/pgxn/pgxn-manager)).
 
 * [PGXN API](http://api.pgxn.org/) is a web application that syncs itself
   to a PGXN mirror and provides a RESTFUL interface for use by PGXN clients
-  ([source](https://github.com/theory/pgxn-api)).
+  ([source](https://github.com/pgxn/pgxn-api)).
 
 * [PGXN](http://pgxn.org/) is the main web site for the network, and client to
   the API. It includes pages describing all the contents of the network,
   including all released distributions and their documentation, and is fully
   searchable. It is currently under heavy development
-  ([source](https://github.com/theory/pgxn-site)).
+  ([source](https://github.com/pgxn/pgxn-site)).
 
 * A command-line client for installing packages distributed via the network.
   Development of this piecs has not yet begun.
@@ -29,13 +29,9 @@ consists of four parts:
 Project Status
 --------------
 
-The main site is currently under heavy development, but is expected to be
-launched by the end of March, 2011. Until that time, the early fundraising
-pages of the site, stored in [this
-repository](https://github.com/theory/pgxn)), continue to be served. Once the
-new site goes live, this repository will no longer be worked on, but this page
-will remain as a pointer to all of the sub-projects that encompass the whole
-of PGXN.
+PGXN is now in production. As such, this repository is longer worked on, but
+this page remains as a pointer to all of the sub-projects that encompass the
+whole of PGXN.
 
 Who’s Doing This?
 -----------------

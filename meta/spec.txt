@@ -566,12 +566,12 @@ Example:
     "resources": {
       "homepage": "http://pgxn.org/",
       "bugtracker": {
-        "web": "http://github.com/theory/pgxn/issues",
+        "web": "http://github.com/pgxn/pgxn/issues",
         "mailto": "pgxn-bugs@example.com"
       },
       "repository": {
-        "url": "git://github.com/theory/pgxn.git",
-        "web": "http://github.com/theory/pgxn/",
+        "url": "git://github.com/pgxn/pgxn.git",
+        "web": "http://github.com/pgxn/pgxn/",
         "type": "git"
       },
       "x_twitter": "http://twitter.com/pgxn/"
