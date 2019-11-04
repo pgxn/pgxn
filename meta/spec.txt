@@ -103,7 +103,7 @@ Terminology
     tests, and/or documents that are distributed together for other developers
     to use. Examples of distributions are [`pgTAP`](http://pgtap.org/),
     [`uri`](http://pgfoundry.org/projects/uri/), and
-    [`PostGIS`](http://www.postgis.org/).
+    [`PostGIS`](http://postgis.net/).
 
 =extension=
     A reusable library of code contained in a single file or within files
@@ -454,11 +454,11 @@ Example:
     "prereqs": {
       "runtime": {
         "requires": {
-          "PostgreSQL": "8.0.0",
-          "PostGIS": "1.5.0"
+          "PostgreSQL": "9.6.0",
+          "PostGIS": "2.5.0"
         },
         "recommends": {
-          "PostgreSQL": "8.4.0"
+          "PostgreSQL": "11.0",
         },
         "suggests": {
           "Archive::Tar": 0
